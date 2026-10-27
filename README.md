@@ -98,11 +98,11 @@ npm run dist:mac           # Mac arm64 et x64 → dist/*.zip (sur Linux : rcodes
 
 ## Soutenir le projet
 
-Platine Duo est gratuit et le restera. Si vous l'aimez, un petit don aide à le faire vivre : [faire un don par PayPal](https://www.paypal.com/donate/?business=deltapassion%40gmx.com&currency_code=EUR&item_name=Soutien%20Platine%20Duo) (montant libre, avec ou sans compte PayPal).
+Platine Duo est gratuit et le restera. Si vous l'aimez, un petit don aide à le faire vivre : [faire un don sur Ko-fi](https://ko-fi.com/djlatinjazz) (montant libre, par carte ou PayPal). Objectif en cours : un Reloop Terminal Mix 8, pour intégrer son mapping.
 
 ## Signaler un problème
 
-Ouvrez un ticket dans l'onglet **Issues**, ou écrivez à deltapassion@gmx.com. Indiquez votre système, votre contrôleur et ce qui s'est passé.
+Cliquez sur [Signaler un bug](https://github.com/Deltapassion/Platine-Duo/issues/new?template=bug.yml) (onglet **Issues**), ou écrivez à deltapassion@gmx.com. Indiquez votre système, votre contrôleur et ce qui s'est passé.
 
 ---
 
@@ -122,7 +122,7 @@ Ouvrez un ticket dans l'onglet **Issues**, ou écrivez à deltapassion@gmx.com. 
 
 **Download** the Windows installer, the Mac `.zip` (Apple Silicon `arm64` or Intel `x64`, macOS 12 Monterey or later), the `.deb` package, the AppImage or the HTML file from **Releases**. On a Mac, the app is not signed with a paid Apple certificate: on first launch, go to System Settings › Privacy & Security › **Open Anyway**. Illustrated manual in 6 languages: `docs/notice-platine-duo-4v.html`. Close Mixxx before starting Platine Duo. To build from source, see the commands above (`npm install`, `npm start`, `npm run dist:linux`).
 
-Free forever; if you like it, you can [support the project with a PayPal donation](https://www.paypal.com/donate/?business=deltapassion%40gmx.com&currency_code=EUR&item_name=Soutien%20Platine%20Duo).
+Free forever; if you like it, you can [support the project on Ko-fi](https://ko-fi.com/djlatinjazz).
 
 Created by **Jacques Branas (DJ LATIN JAZZ)** in collaboration with Claude.ai (Anthropic). Licensed under the **GNU GPL v2 or later**. Contact: deltapassion@gmx.com
 
