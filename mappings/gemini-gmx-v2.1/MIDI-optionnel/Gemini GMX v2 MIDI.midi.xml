@@ -1,0 +1,1468 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MixxxControllerPreset mixxxVersion="2.3.0+" schemaVersion="1">
+	<info>
+		<name>Gemini GMX v2.1 (MIDI) - fallback, never with HID</name>
+		<author>Miss (original), community update</author>
+		<description>MIDI mapping for the Gemini GMX: hot cues, auto loops, loop rolls, sampler and FX pad modes, manual loops with jog adjustment, sync lock, pitch range, vinyl/CD jog modes and LED feedback. No LCD and no VU meters in MIDI mode: use "Gemini GMX Full (HID)" for those.</description>
+	</info>
+	<controller id="GMX">
+		<scriptfiles>
+			<file functionprefix="" filename="common-controller-scripts.js" />
+			<file functionprefix="GeminiGMX" filename="Gemini-GMX-v2-MIDI.js" />
+		</scriptfiles>
+		<controls>
+			<!-- ===== Deck A : buttons (note on + note off) ===== -->
+			<control>
+				<description>Deck A Play</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x01</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Play</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x01</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Cue</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x02</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Cue</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x02</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop In</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x03</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop In</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x03</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop Out</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x04</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop Out</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x04</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Reloop/Exit</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Reloop/Exit</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pads mode (hot cue on/off - auto loop)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x06</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pads mode (hot cue on/off - auto loop)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x06</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop x2 (Shift + Loop Out)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x07</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop x2 (Shift + Loop Out)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x07</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop /2 (Shift + Loop In)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x08</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Loop /2 (Shift + Loop In)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x08</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 1</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x09</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 1</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x09</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 2</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 2</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 3</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 3</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 4</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 4</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 1</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 1</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 2</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0E</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 2</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0E</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 3</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x0F</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 3</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x0F</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 4</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x10</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 4</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x10</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A BPM Tap</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x11</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A BPM Tap</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x11</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Lock / sync (Shift + BPM Tap)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x12</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Lock / sync (Shift + BPM Tap)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x12</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Key Lock</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x13</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Key Lock</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x13</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Range (Shift + Key Lock)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x14</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Range (Shift + Key Lock)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x14</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Time</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x15</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Time</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x15</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Text (Shift + Time) - quantize</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x16</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Text (Shift + Time) - quantize</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x16</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Auto Cue</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x17</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Auto Cue</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x17</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Repeat</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x18</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Repeat</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x18</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Search</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x1A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Search</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x1A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Jog touch</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x1B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Jog touch</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x1B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Browse push - load track</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x1C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Browse push - load track</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x1C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Browse back</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x1D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Browse back</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x1D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Scratch (vinyl mode)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x20</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Scratch (vinyl mode)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x20</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Reverse</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x21</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Reverse</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x21</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Headphones (PFL)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x22</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Headphones (PFL)</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x22</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 5</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x23</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 5</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x23</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 6</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x24</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 6</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x24</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 7</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x25</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 7</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x25</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 8</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x26</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Pad 8</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x26</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 5</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x27</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 5</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x27</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 6</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x28</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 6</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x28</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 7</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x29</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 7</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x29</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 8</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x2A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift + Pad 8</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x2A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x90</status>
+				<midino>0x2B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck A Shift</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x80</status>
+				<midino>0x2B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<!-- ===== Deck A : continuous controls ===== -->
+			<control>
+				<description>Deck A pitch fader</description>
+				<group>[Channel1]</group>
+				<key>rate</key>
+				<status>0xB0</status>
+				<midino>0x01</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Deck A filter</description>
+				<group>[QuickEffectRack1_[Channel1]]</group>
+				<key>super1</key>
+				<status>0xB0</status>
+				<midino>0x04</midino>
+			</control>
+			<control>
+				<description>Deck A jog wheel</description>
+				<group>[Channel1]</group>
+				<key>GeminiGMX.JogSpin</key>
+				<status>0xB0</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<!-- ===== Deck B : buttons (note on + note off) ===== -->
+			<control>
+				<description>Deck B Play</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x01</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Play</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x01</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Cue</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x02</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Cue</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x02</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop In</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x03</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop In</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x03</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop Out</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x04</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop Out</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x04</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Reloop/Exit</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Reloop/Exit</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pads mode (hot cue on/off - auto loop)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x06</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pads mode (hot cue on/off - auto loop)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x06</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop x2 (Shift + Loop Out)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x07</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop x2 (Shift + Loop Out)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x07</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop /2 (Shift + Loop In)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x08</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Loop /2 (Shift + Loop In)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x08</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 1</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x09</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 1</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x09</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 2</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 2</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 3</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 3</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 4</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 4</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 1</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 1</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 2</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0E</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 2</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0E</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 3</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x0F</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 3</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x0F</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 4</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x10</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 4</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x10</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B BPM Tap</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x11</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B BPM Tap</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x11</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Lock / sync (Shift + BPM Tap)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x12</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Lock / sync (Shift + BPM Tap)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x12</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Key Lock</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x13</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Key Lock</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x13</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Range (Shift + Key Lock)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x14</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Range (Shift + Key Lock)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x14</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Time</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x15</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Time</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x15</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Text (Shift + Time) - quantize</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x16</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Text (Shift + Time) - quantize</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x16</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Auto Cue</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x17</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Auto Cue</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x17</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Repeat</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x18</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Repeat</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x18</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Search</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x1A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Search</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x1A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Jog touch</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x1B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Jog touch</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x1B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Browse push - load track</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x1C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Browse push - load track</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x1C</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Browse back</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x1D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Browse back</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x1D</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Scratch (vinyl mode)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x20</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Scratch (vinyl mode)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x20</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Reverse</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x21</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Reverse</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x21</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Headphones (PFL)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x22</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Headphones (PFL)</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x22</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 5</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x23</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 5</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x23</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 6</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x24</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 6</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x24</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 7</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x25</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 7</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x25</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 8</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x26</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Pad 8</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x26</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 5</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x27</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 5</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x27</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 6</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x28</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 6</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x28</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 7</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x29</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 7</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x29</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 8</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x2A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift + Pad 8</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x2A</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x91</status>
+				<midino>0x2B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Deck B Shift</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.Button</key>
+				<status>0x81</status>
+				<midino>0x2B</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<!-- ===== Deck B : continuous controls ===== -->
+			<control>
+				<description>Deck B pitch fader</description>
+				<group>[Channel2]</group>
+				<key>rate</key>
+				<status>0xB1</status>
+				<midino>0x01</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Deck B filter</description>
+				<group>[QuickEffectRack1_[Channel2]]</group>
+				<key>super1</key>
+				<status>0xB1</status>
+				<midino>0x04</midino>
+			</control>
+			<control>
+				<description>Deck B jog wheel</description>
+				<group>[Channel2]</group>
+				<key>GeminiGMX.JogSpin</key>
+				<status>0xB1</status>
+				<midino>0x05</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<!-- ===== Mixer (channel 4) ===== -->
+			<control>
+				<description>Gain A</description>
+				<group>[Channel1]</group>
+				<key>pregain</key>
+				<status>0xB3</status>
+				<midino>0x01</midino>
+			</control>
+			<control>
+				<description>Gain B</description>
+				<group>[Channel2]</group>
+				<key>pregain</key>
+				<status>0xB3</status>
+				<midino>0x02</midino>
+			</control>
+			<control>
+				<description>Mid A</description>
+				<group>[EqualizerRack1_[Channel1]_Effect1]</group>
+				<key>parameter2</key>
+				<status>0xB3</status>
+				<midino>0x03</midino>
+			</control>
+			<control>
+				<description>Mid B</description>
+				<group>[EqualizerRack1_[Channel2]_Effect1]</group>
+				<key>parameter2</key>
+				<status>0xB3</status>
+				<midino>0x04</midino>
+			</control>
+			<control>
+				<description>High A</description>
+				<group>[EqualizerRack1_[Channel1]_Effect1]</group>
+				<key>parameter3</key>
+				<status>0xB3</status>
+				<midino>0x05</midino>
+			</control>
+			<control>
+				<description>High B</description>
+				<group>[EqualizerRack1_[Channel2]_Effect1]</group>
+				<key>parameter3</key>
+				<status>0xB3</status>
+				<midino>0x06</midino>
+			</control>
+			<control>
+				<description>Low A</description>
+				<group>[EqualizerRack1_[Channel1]_Effect1]</group>
+				<key>parameter1</key>
+				<status>0xB3</status>
+				<midino>0x07</midino>
+			</control>
+			<control>
+				<description>Low B</description>
+				<group>[EqualizerRack1_[Channel2]_Effect1]</group>
+				<key>parameter1</key>
+				<status>0xB3</status>
+				<midino>0x08</midino>
+			</control>
+			<control>
+				<description>Volume A</description>
+				<group>[Channel1]</group>
+				<key>volume</key>
+				<status>0xB3</status>
+				<midino>0x09</midino>
+			</control>
+			<control>
+				<description>Volume B</description>
+				<group>[Channel2]</group>
+				<key>volume</key>
+				<status>0xB3</status>
+				<midino>0x0A</midino>
+			</control>
+			<control>
+				<description>Crossfader</description>
+				<group>[Master]</group>
+				<key>crossfader</key>
+				<status>0xB3</status>
+				<midino>0x0B</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Cue mix</description>
+				<group>[Master]</group>
+				<key>headMix</key>
+				<status>0xB3</status>
+				<midino>0x0C</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Master volume</description>
+				<group>[Master]</group>
+				<key>gain</key>
+				<status>0xB3</status>
+				<midino>0x0D</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Headphone volume</description>
+				<group>[Master]</group>
+				<key>headGain</key>
+				<status>0xB3</status>
+				<midino>0x0E</midino>
+				<options><Invert/></options>
+			</control>
+			<control>
+				<description>Browse knob (Shift = page scroll)</description>
+				<group>[Library]</group>
+				<key>GeminiGMX.Browse</key>
+				<status>0xB3</status>
+				<midino>0x0F</midino>
+				<options><Script-Binding/></options>
+			</control>
+			<control>
+				<description>Booth volume</description>
+				<group>[Master]</group>
+				<key>booth_gain</key>
+				<status>0xB3</status>
+				<midino>0x10</midino>
+				<options><Invert/></options>
+			</control>
+		</controls>
+		<outputs>
+			<!-- All LEDs are driven by the script (pad modes, blinking) -->
+		</outputs>
+	</controller>
+</MixxxControllerPreset>

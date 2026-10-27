@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MixxxControllerPreset schemaVersion="1" mixxxVersion="2.3.0+">
+    <info>
+        <name>Gemini GMX v2.1 (HID)</name>
+        <author>Miss (original), community update</author>
+        <description>Native HID mapping for the Gemini GMX: hot cues, auto loops, loop rolls, sampler and FX pad modes, manual loops with jog adjustment, sync lock, pitch range, vinyl/CD jog modes, LED, VU meter and LCD feedback. Recommended over the MIDI mapping. Requires Mixxx 2.3.0 or newer.</description>
+    </info>
+    <controller id="Gemini">
+        <scriptfiles>
+            <file functionprefix="" filename="common-controller-scripts.js"/>
+            <file functionprefix="GeminiGMXHid" filename="Gemini-GMX-v2-HID.js"/>
+        </scriptfiles>
+    </controller>
+</MixxxControllerPreset>
