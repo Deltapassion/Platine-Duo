@@ -1,306 +1,144 @@
-Platine Duo
+# Platine Duo 4V
 
-Logiciel de mix DJ libre — Free DJ mixing software
-Windows · Linux · navigateur (Chrome, Edge, Opera)
+**Logiciel de mix DJ libre — Free DJ mixing software**
+Windows · Mac · Linux · navigateur (Chrome, Edge, Opera)
 
+![Platine Duo 4V en mode 4 voies](docs/captures/ecran-4v-fr.png)
 
+**Site : https://deltapassion.github.io/Platine-Duo/** · essai en ligne : https://deltapassion.github.io/Platine-Duo/app/
 
-Créé par Jacques Branas, alias DJ LATIN JAZZ, en collaboration avec Claude.ai (Anthropic).
-Logiciel libre sous licence GNU GPL version 2 ou ultérieure. Contact : deltapassion@gmx.com
+Créé par **Jacques Branas, alias DJ LATIN JAZZ**, en collaboration avec Claude.ai (Anthropic).
+Logiciel libre sous licence **GNU GPL version 2 ou ultérieure**. Contact : deltapassion@gmx.com
 
-English below.
+*English below.*
 
+---
 
+## Ce que fait Platine Duo 4V
 
-Ce que fait Platine Duo
+- **2 ou 4 platines** au choix (bouton « 2 VOIES / 4 VOIES » en haut de l'écran), avec formes d'onde, BPM, SYNC, 8 repères, boucles, effets (écho, flanger, réverb), jog et pitch.
+- **Table de mixage** jusqu'à 4 voies : gain, égaliseur 3 bandes, filtre, pré-écoute au casque, crossfader avec affectation de chaque voie (côté A, côté B ou hors crossfader), **XF START**.
+- **Auto DJ** : le robot enchaîne les titres d'une platine à l'autre en respectant vos faders.
+- **Soirée par styles** : l'Auto DJ joue des séries par style de danse à partir de vos dossiers (par exemple 3 salsas, 3 bachatas, 3 kizombas, puis semba, tango…), jusqu'à 8 styles, nombre de titres par série réglable.
+- **Sampleur à 8 pads** : alarme, police, cloche, sirène… et vos propres sons.
+- **Contrôleurs MIDI, USB HID et Bluetooth MIDI**, reconnus au branchement. Intégrés : Gemini GMX (écrans et compteurs compris), Reloop Beatpad, Hercules Inpulse 200 et 500, Pioneer DDJ-FLX4 et DDJ-400, Reloop Terminal Mix 2/4 (4 platines). Les mappings **Mixxx** s'importent tels quels.
+- **Sources** : vos fichiers, Audius et Jamendo (titres complets), Deezer (extraits de 30 s).
+- **6 langues** : français, English, español, Deutsch, italiano, português. Thèmes, couleur de fond et contraste réglables.
 
+![Sampleur](docs/captures/sampleur.png)
 
+## Télécharger
 
+Les fichiers sont dans la rubrique **Releases** (à droite sur cette page).
 
+| Système | Fichier | Installation |
+| --- | --- | --- |
+| Windows 10 / 11 | `Platine-Duo-4V-Setup-2.0.0.3.exe` | Double-clic. L'installateur propose de retirer l'ancienne version de Platine Duo (vos réglages sont gardés). Si Windows affiche « Windows a protégé votre ordinateur », cliquez **Informations complémentaires › Exécuter quand même** (l'installateur n'est pas signé par un certificat payant). |
+| Mac Apple Silicon (M1, M2, M3, M4…) | `Platine-Duo-4V-2.0.0-mac-arm64.zip` | macOS 12 Monterey ou plus récent. Double-clic sur le .zip, puis glissez **Platine Duo 4V** dans le dossier Applications. Premier lancement : voir « Ouvrir sur Mac » plus bas. |
+| Mac Intel | `Platine-Duo-4V-2.0.0-mac-x64.zip` | Pareil. Pour savoir quel Mac vous avez : menu Pomme › À propos de ce Mac (« Puce Apple » ou « Processeur Intel »). |
+| Ubuntu, Debian, Mint | `platine-duo_2.0.0_amd64.3.deb` | `sudo apt install ./platine-duo_2.0.0_amd64.3.deb` (remplace la version 1.1.0) |
+| Toute distribution Linux (PC 64 bits) | `Platine-Duo-4V-2.0.0-x86_64.3.AppImage` | `chmod +x Platine-Duo-4V-2.0.0-x86_64.3.AppImage` puis double-clic. Si rien ne s'ouvre sur Ubuntu 22.04 ou plus récent : `sudo apt install libfuse2` (24.04 : `libfuse2t64`). Pour un contrôleur en USB HID (écrans du GMX), installez une fois les règles d'accès : voir plus bas. |
+| Navigateur | `platine-duo-4v.html` | Ouvrir dans Chrome, Edge ou Opera sur ordinateur. |
 
-Deux platines avec formes d'onde, BPM, SYNC, 8 repères, boucles, effets (écho, flanger, réverb), jog et pitch.
+**Notice illustrée en 6 langues** : [docs/notice-platine-duo-4v.html](docs/notice-platine-duo-4v.html) (téléchargez le fichier et ouvrez-le dans votre navigateur ; notice de la 1.1.0 : [docs/notice-platine-duo-1.1.0.html](docs/notice-platine-duo-1.1.0.html)).
 
+**Avant de lancer Platine Duo 4V, fermez Mixxx** : un contrôleur ne peut servir qu'à un logiciel à la fois.
 
+### Ouvrir sur Mac
 
-Table de mixage : gain, égaliseur 3 bandes, filtre, pré-écoute au casque, crossfader, XF START.
+Platine Duo n'est pas signé par un certificat Apple payant : au premier lancement, macOS refuse de l'ouvrir. Une seule fois :
 
+1. Double-cliquez sur **Platine Duo 4V** dans Applications ; macOS affiche un message d'avertissement, cliquez **OK** (ou **Terminé**).
+2. Ouvrez **Réglages Système › Confidentialité et sécurité**, descendez jusqu'au message sur Platine Duo 4V et cliquez **Ouvrir quand même**, puis confirmez avec votre mot de passe.
 
+Ensuite il s'ouvre normalement. Si macOS indique que l'application « est endommagée », tapez dans le Terminal : `xattr -dr com.apple.quarantine "/Applications/Platine Duo 4V.app"`.
 
-Auto DJ : le robot enchaîne les titres d'une platine à l'autre en respectant vos faders.
+Au premier lancement, macOS peut demander l'accès au micro : Platine Duo s'en sert seulement pour afficher le nom de vos cartes son, rien n'est enregistré. Pour le casque du GMX : **Configuration audio et MIDI** › GMX › **Configurer les haut-parleurs** › Quadriphonique. Sur Mac, `Cmd` remplace `Ctrl` dans les raccourcis.
 
+### Règles d'accès USB pour Linux (AppImage ou sources)
 
+Le paquet `.deb` les installe tout seul. Avec l'AppImage ou depuis les sources :
 
-Sampleur à 8 pads : alarme, police, cloche, sirène… et vos propres sons.
-
-
-
-Contrôleurs MIDI, USB HID et Bluetooth MIDI, reconnus au branchement. Intégrés : Gemini GMX (écrans et compteurs compris), Hercules Inpulse 200 et 500, Pioneer DDJ-FLX4 et DDJ-400, Reloop Terminal Mix 2/4. Les mappings Mixxx s'importent tels quels.
-
-
-
-Sources : vos fichiers, Audius et Jamendo (titres complets), Deezer (extraits de 30 s).
-
-
-
-6 langues : français, English, español, Deutsch, italiano, português. Thèmes, couleur de fond et contraste réglables.
-
-
-
-Télécharger
-
-Les fichiers sont dans la rubrique Releases (à droite sur cette page).
-
-
-
-
-
-
-
-Système
-
-
-
-Fichier
-
-
-
-Installation
-
-
-
-
-
-Windows 10 / 11
-
-
-
-Platine-Duo-Setup-1.1.0.exe
-
-
-
-Double-clic. Si Windows affiche « Windows a protégé votre ordinateur », cliquez Informations complémentaires › Exécuter quand même (l'installateur n'est pas signé par un certificat payant).
-
-
-
-
-
-Ubuntu, Debian, Mint
-
-
-
-platine-duo_1.1.0_amd64.deb
-
-
-
-sudo apt install ./platine-duo_1.1.0_amd64.deb
-
-
-
-
-
-Toute distribution Linux
-
-
-
-Platine-Duo-1.1.0-x86_64.AppImage
-
-
-
-chmod +x Platine-Duo-1.1.0-x86_64.AppImage puis double-clic. Pour un contrôleur en USB HID (écrans du GMX), installez une fois les règles d'accès : voir plus bas.
-
-
-
-
-
-Navigateur
-
-
-
-platine-duo.html
-
-
-
-Ouvrir dans Chrome, Edge ou Opera sur ordinateur.
-
-Avant de lancer Platine Duo, fermez Mixxx : un contrôleur ne peut servir qu'à un logiciel à la fois.
-
-Règles d'accès USB pour Linux (AppImage ou sources)
-
-Le paquet .deb les installe tout seul. Avec l'AppImage ou depuis les sources :
-
+```bash
 sudo cp build/linux/69-platine-duo-usb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
+```
 
 Puis débranchez et rebranchez le contrôleur.
 
-Compiler depuis les sources
+## Compiler depuis les sources
 
 Il faut Node.js 20 ou plus récent.
 
+```bash
 npm install                # Electron et les outils de construction
 npm start                  # lancer sans installer
-npm run dist:linux         # paquet .deb      → dist/
+npm run dist:linux         # paquet .deb      → dist/platine-duo_2.0.0_amd64.3.deb
 npm run dist:appimage      # AppImage         → dist/
 npm run dist:win           # installateur Windows (NSIS requis : sudo apt install nsis)
+npm run dist:mac           # Mac arm64 et x64 → dist/*.zip (sur Linux : rcodesign requis)
+```
 
+| Élément | Rôle |
+| --- | --- |
+| `app/index.html` | le logiciel complet (interface, moteur audio, mappings, traductions) ; fonctionne aussi seul dans un navigateur |
+| `main.js`, `preload.js` | l'application de bureau (Electron) et son pont sécurisé avec la page |
+| `installer.nsi`, `afterPack.js` | l'installateur Windows et l'icône de l'exécutable |
+| `build/` | icônes, règles USB pour Linux, scripts du paquet .deb |
+| `mappings/` | mappings d'origine (Gemini GMX v2.1, projet Mixxx) |
 
+## Nouveautés de la version 2.0.0 (Platine Duo 4V)
 
+- Mode **4 voies** : platines C et D, table de mixage à 4 voies avec la lettre de chaque voie, affectation de chaque voie au crossfader. XF START lance la platine choisie de chaque côté du crossfader ; l'Auto DJ utilise A et B.
+- **Soirée par styles** pour l'Auto DJ (Réglages › Soirée) : un dossier par style, séries de N titres, rotation des styles, bouton ⏭ pour passer au style suivant.
+- Mapping **Reloop Beatpad** intégré, reconnu au branchement.
+- **Version Mac** (Apple Silicon et Intel).
+- Raccourcis : `Ctrl+Maj+←` / `Ctrl+Maj+→` chargent le titre sélectionné sur C / D.
+- Vos réglages, mappings, repères et sons du sampleur de la version 1.1.0 sont conservés.
 
+## Signaler un problème
 
+Ouvrez un ticket dans l'onglet **Issues**, ou écrivez à deltapassion@gmx.com. Indiquez votre système, votre contrôleur et ce qui s'est passé.
 
+---
 
-Élément
+## English
 
+**Platine Duo 4V** is a free 2- or 4-deck DJ mixing program for Windows, Mac, Linux and web browsers (Chrome, Edge, Opera).
 
+![Platine Duo 4V](docs/captures/screen-4v-en.png)
 
-Rôle
+- Two or four decks ("2 DECKS / 4 DECKS" switch at the top of the screen) with waveforms, BPM, sync, 8 hot cues, loops, effects, jog and pitch.
+- Mixer with up to 4 channels: 3-band EQ, filter, headphone cue, crossfader with per-channel assignment, and **XF START** (crossfader starts the deck).
+- **Auto DJ** robot that alternates decks and respects your channel faders, with a **party-by-style** mode: sets of N tracks per dance style taken from your folders (salsa, bachata, kizomba, semba, tango…).
+- **8-pad sampler** with built-in sounds and your own files.
+- **MIDI, USB HID and Bluetooth MIDI controllers**, detected when plugged in: Gemini GMX (with its screens and counters), Reloop Beatpad, Hercules Inpulse 200/500, Pioneer DDJ-FLX4/DDJ-400, Reloop Terminal Mix 2/4 (4 decks). **Mixxx mappings** can be imported as they are.
+- Sources: local files, Audius and Jamendo (full tracks), Deezer (30-second previews).
+- Interface in 6 languages, with themes, background colour and contrast settings.
 
+**Download** the Windows installer, the Mac `.zip` (Apple Silicon `arm64` or Intel `x64`, macOS 12 Monterey or later), the `.deb` package, the AppImage or the HTML file from **Releases**. On a Mac, the app is not signed with a paid Apple certificate: on first launch, go to System Settings › Privacy & Security › **Open Anyway**. Illustrated manual in 6 languages: `docs/notice-platine-duo-4v.html`. Close Mixxx before starting Platine Duo. To build from source, see the commands above (`npm install`, `npm start`, `npm run dist:linux`).
 
+Created by **Jacques Branas (DJ LATIN JAZZ)** in collaboration with Claude.ai (Anthropic). Licensed under the **GNU GPL v2 or later**. Contact: deltapassion@gmx.com
 
+---
 
+## Sécurité / Security
 
-app/index.html
+- La page tourne dans un bac à sable, sans accès au système, isolée du reste de l'application.
+- Aucun script ne peut être chargé depuis Internet (politique de contenu CSP).
+- Le MIDI, l'USB et le Bluetooth ne sont autorisés que pour la page du logiciel.
+- L'application ne peut lire sur Internet, pour la page, que les adresses de Deezer (liste fermée).
+- Electron 44.9.3, avec les verrous de sécurité « fuses » activés (pas de mode Node, pas d'inspection).
+- Un mapping Mixxx importé est un programme : n'importez que des mappings de sources sûres (projet Mixxx,
+  auteurs connus), comme dans Mixxx.
 
+## Remerciements / Credits
 
-
-le logiciel complet (interface, moteur audio, mappings, traductions) ; fonctionne aussi seul dans un navigateur
-
-
-
-
-
-main.js, preload.js
-
-
-
-l'application de bureau (Electron) et son pont sécurisé avec la page
-
-
-
-
-
-installer.nsi, afterPack.js
-
-
-
-l'installateur Windows et l'icône de l'exécutable
-
-
-
-
-
-build/
-
-
-
-icônes, règles USB pour Linux, scripts du paquet .deb
-
-
-
-
-
-mappings/
-
-
-
-mappings d'origine (Gemini GMX v2.1, projet Mixxx)
-
-Signaler un problème
-
-Ouvrez un ticket dans l'onglet Issues, ou écrivez à deltapassion@gmx.com. Indiquez votre système, votre contrôleur et ce qui s'est passé.
-
-
-
-English
-
-Platine Duo is a free two-deck DJ mixing program for Windows, Linux and web browsers (Chrome, Edge, Opera).
-
-
-
-
-
-
-
-Two decks with waveforms, BPM, sync, 8 hot cues, loops, effects, jog and pitch.
-
-
-
-Mixer with 3-band EQ, filter, headphone cue, crossfader and XF START (crossfader starts the deck).
-
-
-
-Auto DJ robot that alternates decks and respects your channel faders.
-
-
-
-8-pad sampler with built-in sounds and your own files.
-
-
-
-MIDI, USB HID and Bluetooth MIDI controllers, detected when plugged in: Gemini GMX (with its screens and counters), Hercules Inpulse 200/500, Pioneer DDJ-FLX4/DDJ-400, Reloop Terminal Mix 2/4. Mixxx mappings can be imported as they are.
-
-
-
-Sources: local files, Audius and Jamendo (full tracks), Deezer (30-second previews).
-
-
-
-Interface in 6 languages, with themes, background colour and contrast settings.
-
-Download the Windows installer, the .deb package, the AppImage or the HTML file from Releases. Close Mixxx before starting Platine Duo. To build from source, see the commands above (npm install, npm start, npm run dist:linux).
-
-Created by Jacques Branas (DJ LATIN JAZZ) in collaboration with Claude.ai (Anthropic). Licensed under the GNU GPL v2 or later. Contact: deltapassion@gmx.com
-
-
-
-Sécurité / Security
-
-
-
-
-
-La page tourne dans un bac à sable, sans accès au système, isolée du reste de l'application.
-
-
-
-Aucun script ne peut être chargé depuis Internet (politique de contenu CSP).
-
-
-
-Le MIDI, l'USB et le Bluetooth ne sont autorisés que pour la page du logiciel.
-
-
-
-L'application ne peut lire sur Internet, pour la page, que les adresses de Deezer (liste fermée).
-
-
-
-Electron 44.9.3, avec les verrous de sécurité « fuses » activés (pas de mode Node, pas d'inspection).
-
-
-
-Un mapping Mixxx importé est un programme : n'importez que des mappings de sources sûres (projet Mixxx,
-auteurs connus), comme dans Mixxx.
-
-Remerciements / Credits
-
-
-
-
-
-Mapping Gemini GMX : mapping HID d'origine et décodage du protocole par Miss (projet
-codecat/mixxx-gemini-gmx), version 2.1 par Jacques Branas.
-
-
-
-Mappings Hercules Inpulse 200 et 500, Pioneer DDJ-FLX4 et DDJ-400, Reloop Terminal Mix 2/4,
-bibliothèques common-controller-scripts.js et midi-components-0.0.js, règles udev : projet Mixxx
-(https://mixxx.org), GNU GPL v2 ou ultérieure.
-
-
-
-Polices Saira, Saira Condensed et JetBrains Mono : SIL Open Font License.
-
-
-
-Electron : licence MIT.
+- Mapping Gemini GMX : mapping HID d'origine et décodage du protocole par Miss (projet
+  codecat/mixxx-gemini-gmx), version 2.1 par Jacques Branas.
+- Mapping Reloop Beatpad : Chloé Avrillon (DJ Chloé), projet Mixxx, GNU GPL v2 ou ultérieure.
+- Mappings Hercules Inpulse 200 et 500, Pioneer DDJ-FLX4 et DDJ-400, Reloop Terminal Mix 2/4,
+  bibliothèques `common-controller-scripts.js` et `midi-components-0.0.js`, règles udev : projet Mixxx
+  (https://mixxx.org), GNU GPL v2 ou ultérieure.
+- Polices Saira, Saira Condensed et JetBrains Mono : SIL Open Font License.
+- Electron : licence MIT.

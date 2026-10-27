@@ -1,0 +1,160 @@
+{
+  "name": "platine-duo",
+  "productName": "Platine Duo 4V",
+  "version": "2.0.0",
+  "description": "Logiciel de mix DJ : deux ou quatre platines, Auto DJ, sampleur, contrôleurs MIDI et HID",
+  "author": {
+    "name": "Jacques Branas",
+    "email": "deltapassion@gmx.com"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win dir --x64 && makensis installer.nsi",
+    "dist:linux": "electron-builder --linux deb --x64",
+    "dist:linux-dir": "electron-builder --linux dir --x64",
+    "dist:appimage": "electron-builder --linux AppImage --x64",
+    "dist:mac": "electron-builder --mac dir --arm64 --x64 -c.electronVersion=43.8.3 && node build/mac/sign.js"
+  },
+  "devDependencies": {
+    "electron": "44.9.3",
+    "electron-builder": "26.17.0",
+    "resedit": "2.0.3"
+  },
+  "build": {
+    "appId": "fr.jacques.platineduo",
+    "productName": "Platine Duo 4V",
+    "copyright": "© 2026 Jacques Branas, en collaboration avec Claude.ai — GNU GPL v2+",
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**",
+      "build/icon.png"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "afterPack": "./afterPack.js",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Platine Duo 4V",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "uninstallDisplayName": "Platine Duo 4V",
+      "language": "1036",
+      "installerLanguages": [
+        "fr_FR"
+      ],
+      "artifactName": "Platine-Duo-4V-Setup-${version}.exe",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "electronDownload": {},
+    "extraResources": [
+      {
+        "from": "build/linux/69-platine-duo-usb.rules",
+        "to": "69-platine-duo-usb.rules"
+      },
+      {
+        "from": "LICENSE-GPL-2.0.txt",
+        "to": "LICENSE.txt"
+      }
+    ],
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon-512.png",
+      "category": "Audio",
+      "executableName": "platine-duo",
+      "synopsis": "Logiciel de mix DJ à deux ou quatre platines",
+      "description": "Deux ou quatre platines, table de mixage, effets, Auto DJ, sampleur et contrôleurs MIDI et USB HID (Gemini GMX, Reloop Beatpad, Hercules Inpulse, Pioneer DDJ...).",
+      "maintainer": "Jacques Branas <deltapassion@gmx.com>",
+      "desktop": {
+        "entry": {
+          "Name": "Platine Duo 4V",
+          "Comment": "Logiciel de mix DJ",
+          "Categories": "AudioVideo;Audio;Music;",
+          "Keywords": "DJ;mix;platine;MIDI;"
+        }
+      }
+    },
+    "deb": {
+      "afterInstall": "build/linux/after-install.sh",
+      "afterRemove": "build/linux/after-remove.sh",
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0",
+        "libasound2 | libasound2t64"
+      ],
+      "artifactName": "platine-duo_${version}_amd64.deb"
+    },
+    "publish": null,
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableCookieEncryption": true
+    },
+    "appImage": {
+      "artifactName": "Platine-Duo-4V-${version}-x86_64.AppImage"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.music",
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "minimumSystemVersion": "12.0",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Platine Duo demande l’accès audio uniquement pour afficher le nom de vos cartes son (sortie générale et casque). Rien n’est enregistré.",
+        "NSBluetoothAlwaysUsageDescription": "Platine Duo utilise le Bluetooth pour les contrôleurs Bluetooth MIDI.",
+        "CFBundleDisplayName": "Platine Duo 4V",
+        "NSHumanReadableCopyright": "© 2026 Jacques Branas, en collaboration avec Claude.ai — GNU GPL v2+",
+        "LSApplicationCategoryType": "public.app-category.music"
+      }
+    }
+  },
+  "license": "GPL-2.0-or-later",
+  "copyright": "© 2026 Jacques Branas",
+  "homepage": "https://github.com/Deltapassion/platine-duo.-Free-DJ-mixing-software-"
+}
