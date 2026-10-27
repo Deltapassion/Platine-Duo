@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platine Duo 4V — logiciel de mix DJ libre et gratuit</title>
+<meta name="description" content="Platine Duo 4V : logiciel de mix DJ libre et gratuit à 2 ou 4 platines, Auto DJ par styles de danse, sampleur, contrôleurs MIDI. Windows, Mac, Linux et navigateur.">
+<meta property="og:title" content="Platine Duo 4V — logiciel de mix DJ libre">
+<meta property="og:description" content="2 ou 4 platines, Auto DJ par styles de danse, sampleur, contrôleurs MIDI. Windows, Mac, Linux et navigateur. Gratuit, licence GNU GPL.">
+<meta property="og:image" content="assets/partage.jpg">
+<meta name="theme-color" content="#0a0c11">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600&family=Saira+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --panel:#11151d; --panel2:#171c26; --line:#283041; --fg:#e6e9ef; --mute:#97a0b4;
+  --a:#2fb2ff; --b:#ff8636; --c:#19c3b0; --hot:#ff3f6c; --ok:#3ddc84;
+  --r:14px; --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Saira,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Saira Condensed",Saira,sans-serif;letter-spacing:.02em;line-height:1.1;margin:0}
+h2{font-size:clamp(30px,4.4vw,46px);text-transform:uppercase}
+h3{font-size:22px}
+.kicker{font:600 13px/1 Saira,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--c)}
+section{padding:88px 0}
+.lead{color:var(--mute);font-size:18px;max-width:640px;margin:14px 0 0}
+
+/* barre du haut */
+.top{position:fixed;inset:0 0 auto;z-index:20;transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(10,12,17,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 20px/1 "Saira Condensed",sans-serif;letter-spacing:.04em}
+.brand img{width:34px;height:34px;border-radius:9px}
+.badge{font:700 12px/1 Saira,sans-serif;background:var(--c);color:#04110f;border-radius:5px;padding:4px 6px}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{text-decoration:none;color:#cfd5e1;font-weight:500;font-size:15px}
+.nav a:hover{color:#fff}
+.give{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font:600 14px/1 Saira,sans-serif;color:#fff;background:rgba(255,63,108,.16);border:1px solid rgba(255,63,108,.55);border-radius:9px;padding:8px 12px;white-space:nowrap}
+.give:hover{background:rgba(255,63,108,.3)}
+.give svg{width:16px;height:16px;color:var(--hot)}
+.support{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:linear-gradient(120deg,rgba(255,63,108,.14),rgba(255,134,54,.08) 60%,var(--panel));border:1px solid rgba(255,63,108,.35);border-radius:18px;padding:32px}
+.support .big{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:rgba(255,63,108,.18);color:var(--hot)}
+.support .big svg{width:34px;height:34px}
+.support p{color:#c9d0dc;margin:8px 0 0;max-width:620px}
+.support small{display:block;color:var(--mute);margin-top:8px;font-size:13px}
+.sbtn{display:flex;flex-direction:column;gap:10px;min-width:240px}
+.btn.ghost{background:rgba(255,255,255,.06);border-color:var(--line);color:#e6e9ef;justify-content:center}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.ghost svg{width:18px;height:18px}
+.lang{display:flex;gap:2px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:2px}
+.lang button{all:unset;cursor:pointer;font:600 12px/1 Saira,sans-serif;padding:6px 7px;border-radius:6px;color:#c3cad7}
+.lang button[aria-pressed=true]{background:#fff;color:#0a0c11}
+.lang button:focus-visible{outline:2px solid var(--c)}
+
+/* en-tête avec la photo */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:120px 0 150px;
+  background:#0a0c11 url(assets/fond.jpg) center 30%/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(10,12,17,.55) 0%,rgba(10,12,17,.15) 30%,rgba(10,12,17,.55) 62%,var(--bg) 100%),
+  linear-gradient(90deg,rgba(10,12,17,.78) 0%,rgba(10,12,17,.2) 60%,rgba(10,12,17,0) 100%)}
+.hero .wrap{position:relative;width:100%}
+.hgrid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end}
+.hvid{width:300px}
+.phone{position:relative;width:300px;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#000;border:3px solid rgba(255,255,255,.22);box-shadow:0 24px 70px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.4)}
+.phone iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vcap{font-size:13px;line-height:1.45;color:#d5dbe6;margin:12px 4px 0;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.vcap a{color:#9fd8ff}
+.credit{position:absolute;right:16px;top:70px;z-index:1;font-size:11px;color:rgba(255,255,255,.55);text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.hero .logo{width:96px;height:96px;border-radius:22px;box-shadow:0 10px 40px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.18)}
+.hero h1{font-size:clamp(50px,6.4vw,92px);white-space:nowrap;font-weight:800;text-transform:uppercase;margin:22px 0 0;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.hero h1 .v{color:var(--c)}
+.hero .tag{font-size:clamp(19px,2.4vw,26px);font-weight:500;max-width:680px;margin:12px 0 0;text-shadow:0 2px 16px rgba(0,0,0,.7)}
+.hero .by{color:#d5dbe6;margin:10px 0 0;font-size:15px;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.hero .by b{color:#fff;letter-spacing:.04em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 16px/1 Saira,sans-serif;padding:15px 22px;border-radius:12px;border:1px solid transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.pri{background:var(--hot);color:#fff;box-shadow:0 8px 26px rgba(255,63,108,.35)}
+.btn.pri:hover{background:#ff5a80}
+.btn.sec{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.btn.sec:hover{background:rgba(255,255,255,.18)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;color:#c9d0dc;font-size:14px}
+.meta span::before{content:"✓ ";color:var(--ok)}
+
+/* capture */
+.shot{position:relative;margin-top:-110px;z-index:2}
+.shot figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.shot .cap{color:var(--mute);font-size:14px;text-align:center;margin:10px 0 0}
+.decks{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.decks i{width:26px;height:4px;border-radius:2px;background:var(--a)}
+.decks i:nth-child(2){background:var(--b)}.decks i:nth-child(3){background:var(--c)}.decks i:nth-child(4){background:#a77bff}
+
+/* fonctions */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.card .ic{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;background:rgba(47,178,255,.12);color:var(--a)}
+.card:nth-child(2) .ic{background:rgba(255,134,54,.13);color:var(--b)}
+.card:nth-child(3) .ic{background:rgba(25,195,176,.13);color:var(--c)}
+.card:nth-child(4) .ic{background:rgba(255,63,108,.13);color:var(--hot)}
+.card:nth-child(5) .ic{background:rgba(167,123,255,.14);color:#a77bff}
+.card:nth-child(6) .ic{background:rgba(61,220,132,.13);color:var(--ok)}
+.card .ic svg{width:24px;height:24px}
+.card p{color:var(--mute);margin:8px 0 0}
+
+/* téléchargements */
+#telecharger{background:radial-gradient(1200px 500px at 50% 0,rgba(25,195,176,.08),transparent 70%)}
+.dl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.os{position:relative;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:border-color .15s,transform .15s}
+.os:hover{border-color:#3a4560;transform:translateY(-2px)}
+.os.mine{border-color:var(--c);box-shadow:0 0 0 1px var(--c) inset}
+.os .mark{position:absolute;top:14px;right:14px;font:600 11px/1 Saira,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--c);color:#04110f;padding:5px 7px;border-radius:5px;display:none}
+.os.mine .mark{display:block}
+.os .pic{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;background:var(--panel2);border:1px solid var(--line);margin-bottom:16px}
+.os .pic svg{width:28px;height:28px}
+.os h3{font-size:24px}
+.os .sub{color:var(--mute);font-size:14px;margin:2px 0 14px}
+.os .file{font:500 13px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#b8c0cf;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:14px;word-break:break-all}
+.os .how{color:var(--mute);font-size:14px;margin:0 0 18px;flex:1}
+.os .btn{justify-content:center;width:100%;background:var(--panel2);border-color:#36415a;color:#fff;padding:13px 16px}
+.os .btn:hover{background:#222a39}
+.os.mine .btn{background:var(--c);border-color:var(--c);color:#04110f}
+.note{margin-top:22px;color:var(--mute);font-size:14px;text-align:center}
+.note a{color:#cfe9ff}
+
+/* contrôleurs */
+.ctl{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chips span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px}
+.ctl figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+
+/* notice */
+.doc{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:linear-gradient(120deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:34px}
+.doc p{color:var(--mute);margin:8px 0 0;max-width:560px}
+.doc .links{display:flex;flex-wrap:wrap;gap:10px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 50px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between}
+footer b{color:var(--fg)}
+footer a{color:#cfd5e1}
+
+@media (max-width:960px){
+  .support{grid-template-columns:auto 1fr}
+  .sbtn{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}
+  .sbtn .btn{flex:1 1 200px}
+  .hgrid{grid-template-columns:1fr;gap:36px}
+  .hero h1{white-space:normal}
+  .hvid{justify-self:center;width:min(300px,100%)}
+  .phone{width:100%}
+  .vcap{text-align:center}
+  .grid,.dl{grid-template-columns:repeat(2,1fr)}
+  .ctl{grid-template-columns:1fr}
+  .nav{display:none}
+}
+@media (max-width:620px){
+  .give span{display:none}
+  .give{padding:8px 9px}
+  .support{grid-template-columns:1fr;text-align:left;padding:24px}
+  .sbtn{min-width:0}
+  section{padding:64px 0}
+  .wrap{padding:0 16px}
+  .grid,.dl{grid-template-columns:1fr}
+  .hero{padding:96px 0 120px;background-image:url(assets/fond-960.jpg);background-position:30% center}
+  .hero .logo{width:72px;height:72px;border-radius:17px}
+  .btn{width:100%;justify-content:center}
+  .shot{margin-top:-80px}
+  .top .wrap{gap:10px}
+  .brand span.t{display:none}
+  .lang{margin-left:auto}
+  .doc{padding:24px}
+  .credit{top:66px;right:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* animations du don : fond qui ondule et cœur qui bat */
+@keyframes battement{0%,100%{transform:scale(1)}12%{transform:scale(1.28)}24%{transform:scale(1)}36%{transform:scale(1.18)}48%{transform:scale(1)}}
+@keyframes ondule{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes lueur{0%,100%{box-shadow:0 0 0 0 rgba(255,63,108,.0)}12%{box-shadow:0 0 18px 2px rgba(255,63,108,.45)}48%{box-shadow:0 0 0 0 rgba(255,63,108,0)}}
+.give{background:linear-gradient(110deg,rgba(255,63,108,.14),rgba(255,63,108,.38),rgba(255,134,54,.22),rgba(255,63,108,.14));background-size:300% 300%;animation:ondule 6s ease-in-out infinite,lueur 1.3s ease-in-out infinite}
+.give svg,.support .big svg,.sbtn .btn.pri svg{transform-origin:50% 55%;animation:battement 1.3s ease-in-out infinite}
+.support{background:linear-gradient(120deg,rgba(255,63,108,.10),rgba(255,63,108,.24),rgba(255,134,54,.14),var(--panel),rgba(255,63,108,.18));background-size:300% 300%;animation:ondule 10s ease-in-out infinite}
+.support .big{animation:lueur 1.3s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.give,.give svg,.support,.support .big,.support .big svg,.sbtn .btn.pri svg{animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Liens de téléchargement : changez ici l'adresse de base ou les noms de fichiers si besoin -->
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo.png" alt="" width="34" height="34"><span class="t">PLATINE DUO</span> <span class="badge">4V</span></a>
+    <nav class="nav">
+      <a href="#fonctions" data-i="nav1">Fonctions</a>
+      <a href="#telecharger" data-i="nav2">Télécharger</a>
+      <a href="#controleurs" data-i="nav3">Contrôleurs</a>
+      <a href="#notice" data-i="nav4">Notice</a>
+    </nav>
+    <a class="give" href="https://ko-fi.com/djlatinjazz" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4h2c.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21Z"/></svg><span data-i="don">Faire un don</span></a>
+    <div class="lang" role="group" aria-label="Langue">
+      <button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="de">DE</button><button data-l="it">IT</button><button data-l="pt">PT</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hgrid">
+   <div class="htxt">
+    <img class="logo" src="assets/logo.png" alt="Logo Platine Duo" width="96" height="96">
+    <h1>Platine Duo <span class="v">4V</span></h1>
+    <p class="tag" data-i="tag">Le logiciel de mix DJ libre et gratuit : 2 ou 4 platines, Auto DJ par styles de danse, sampleur et contrôleurs MIDI.</p>
+    <p class="by"><span data-i="by">Créé par</span> <b>DJ LATIN JAZZ</b> (Jacques Branas), <span data-i="with">en collaboration avec Claude.ai</span></p>
+    <div class="cta">
+      <a class="btn pri" id="mainDl" href="#telecharger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg>
+        <span id="mainDlTxt" data-i="dl">Télécharger</span>
+      </a>
+      <a class="btn sec" href="app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/></svg>
+        <span data-i="try">Essayer dans le navigateur</span>
+      </a>
+    </div>
+    <div class="meta"><span data-i="m1">Gratuit, sans publicité</span><span data-i="m2">Logiciel libre GNU GPL</span><span>Windows · Mac · Linux</span><span data-i="m4">6 langues</span></div>
+   </div>
+   <aside class="hvid">
+    <div class="phone"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2455709778246123%2F&amp;show_text=false&amp;width=300&amp;height=533&amp;t=0" title="Vol en deltaplane de Nader Couri au-dessus de Rio" width="300" height="533" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div>
+    <p class="vcap"><span data-i="vid">Le vol de Nader Couri au-dessus de Rio : l'image qui a inspiré l'icône. Enfin libre !</span><br><a href="https://www.facebook.com/reel/2455709778246123" target="_blank" rel="noopener" data-i="vfb">Voir la vidéo sur Facebook</a></p>
+   </aside>
+  </div>
+  <small class="credit"><span data-i="ph">Photo du pilote Nader Couri</span></small>
+</section>
+
+<div class="wrap shot">
+  <figure><img id="shotImg" src="assets/ecran-4v.jpg" alt="Platine Duo 4V en mode 4 platines" width="1600" height="960" loading="eager"></figure>
+  <div class="decks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <p class="cap" data-i="cap">Mode 4 platines : A, B, C et D, chacune avec sa couleur.</p>
+</div>
+
+<section id="fonctions">
+  <div class="wrap">
+    <div class="kicker" data-i="k1">Fonctions</div>
+    <h2 data-i="h1">Tout pour mixer une soirée</h2>
+    <p class="lead" data-i="l1">Pensé par un DJ pour les soirées dansantes, simple à prendre en main et complet quand on en a besoin.</p>
+    <div class="grid">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="12" r="4.5"/><circle cx="17" cy="12" r="4.5"/><circle cx="7" cy="12" r="1" fill="currentColor"/><circle cx="17" cy="12" r="1" fill="currentColor"/></svg></div>
+        <h3 data-i="f1t">2 ou 4 platines</h3><p data-i="f1">Formes d'onde, BPM, SYNC, 8 repères, boucles, effets écho, flanger et réverb. Un bouton passe de 2 à 4 voies.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="18" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg></div>
+        <h3 data-i="f2t">Table de mixage</h3><p data-i="f2">Gain, égaliseur 3 bandes, filtre, casque, crossfader avec XF START : pousser le crossfader lance la platine.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+        <h3 data-i="f3t">Soirée par styles</h3><p data-i="f3">L'Auto DJ enchaîne 3 salsas, 3 bachatas, 3 kizombas… à partir de vos dossiers. Idéal pour les soirées SBK, semba ou tango.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" fill="currentColor"/></svg></div>
+        <h3 data-i="f4t">Sampleur 8 pads</h3><p data-i="f4">Alarme, police, cloche, corne, sirène, applaudissements, laser… et votre propre son sur le pad 8.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10v4M17 10v4"/></svg></div>
+        <h3 data-i="f5t">Contrôleurs DJ</h3><p data-i="f5">MIDI, USB HID et Bluetooth MIDI, reconnus au branchement. Les mappings Mixxx s'importent tels quels.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></div>
+        <h3 data-i="f6t">Libre et en 6 langues</h3><p data-i="f6">Français, English, español, Deutsch, italiano, português. Code source ouvert sous licence GNU GPL.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="telecharger">
+  <div class="wrap">
+    <div class="kicker" data-i="k2">Télécharger · version 2.0.0</div>
+    <h2 data-i="h2">Choisissez votre système</h2>
+    <p class="lead" data-i="l2">Gratuit, sans inscription. Le bon fichier pour votre ordinateur est mis en avant.</p>
+    <div class="dl">
+      <article class="os" data-os="win">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#2fb2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Windows</h3><p class="sub">Windows 10 · 11 (64 bits)</p>
+        <div class="file">Platine-Duo-4V-Setup-2.0.0.3.exe</div>
+        <p class="how" data-i="hWin">Double-cliquez sur l'installateur. S'il indique « Windows a protégé votre ordinateur » : Informations complémentaires › Exécuter quand même.</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/Platine-Duo-4V-Setup-2.0.0.3.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .exe</a>
+      </article>
+      <article class="os" data-os="mac-arm">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#e6e9ef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-1.5-4h-17L2 19Z"/></svg></div>
+        <h3>Mac Apple Silicon</h3><p class="sub" data-i="sArm">Puces M1, M2, M3, M4 · macOS 12 ou plus</p>
+        <div class="file">Platine-Duo-4V-2.0.0-mac-arm64.zip</div>
+        <p class="how" data-i="hMac">Ouvrez le .zip et glissez l'application dans Applications. Premier lancement : Réglages Système › Confidentialité et sécurité › Ouvrir quand même.</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/Platine-Duo-4V-2.0.0-mac-arm64.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .zip</a>
+      </article>
+      <article class="os" data-os="mac-intel">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#97a0b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-1.5-4h-17L2 19Z"/></svg></div>
+        <h3>Mac Intel</h3><p class="sub" data-i="sIntel">Processeur Intel · macOS 12 ou plus</p>
+        <div class="file">Platine-Duo-4V-2.0.0-mac-x64.zip</div>
+        <p class="how" data-i="hIntel">Pour savoir quel Mac vous avez : menu Pomme › À propos de ce Mac (« Puce » ou « Processeur Intel »).</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/Platine-Duo-4V-2.0.0-mac-x64.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .zip</a>
+      </article>
+      <article class="os" data-os="deb">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8636" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z"/><path d="M3 7l9 4.5L21 7M12 11.5v10"/></svg></div>
+        <h3>Linux .deb</h3><p class="sub">Ubuntu · Debian · Mint (64 bits)</p>
+        <div class="file">platine-duo_2.0.0_amd64.3.deb</div>
+        <p class="how" data-i="hDeb">Double-clic pour l'installer, ou dans un terminal : sudo apt install ./platine-duo_2.0.0_amd64.3.deb</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/platine-duo_2.0.0_amd64.3.deb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .deb</a>
+      </article>
+      <article class="os" data-os="appimage">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#19c3b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M7.5 9l3 3-3 3M12.5 15.5h4"/></svg></div>
+        <h3>Linux AppImage</h3><p class="sub" data-i="sApp">Toutes les distributions (64 bits)</p>
+        <div class="file">Platine-Duo-4V-2.0.0-x86_64.3.AppImage</div>
+        <p class="how" data-i="hApp">Rendez le fichier exécutable (clic droit › Propriétés, ou chmod +x), puis double-clic. Aucune installation.</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/Platine-Duo-4V-2.0.0-x86_64.3.AppImage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .AppImage</a>
+      </article>
+      <article class="os" data-os="html">
+        <span class="mark" data-i="yours">Votre système</span>
+        <div class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="#a77bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></div>
+        <h3 data-i="nav">Navigateur</h3><p class="sub">Chrome · Edge · Opera</p>
+        <div class="file">platine-duo-4v.html</div>
+        <p class="how" data-i="hHtml">Un seul fichier, sans installation : ouvrez-le dans Chrome, Edge ou Opera sur ordinateur. Ou essayez-le directement en ligne.</p>
+        <a class="btn" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_2_0_0/platine-duo-4v.html" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg><span data-i="get">Télécharger</span> .html</a>
+      </article>
+    </div>
+    <p class="note"><span data-i="n1">Avant de lancer Platine Duo, fermez Mixxx : un contrôleur ne sert qu'à un logiciel à la fois.</span><br>
+      <a href="https://github.com/Deltapassion/Platine-Duo/releases" data-i="all">Toutes les versions</a> · <a href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_1_1_0/Platine-Duo-Setup-1.1.0.exe" data-i="old">Ancienne version 1.1.0 (Windows)</a> · <a href="https://github.com/Deltapassion/Platine-Duo" data-i="src">Code source</a> · <a href="https://github.com/Deltapassion/Platine-Duo/issues/new?template=bug.yml" data-i="bug2">Signaler un bug</a></p>
+  </div>
+</section>
+
+<section id="soutenir" style="padding:20px 0 40px">
+  <div class="wrap">
+    <div class="support">
+      <div class="big"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4h2c.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21Z"/></svg></div>
+      <div><div class="kicker" style="color:var(--hot)" data-i="k5">Soutenir</div>
+        <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:8px" data-i="h5">Platine Duo est gratuit et le restera</h2>
+        <p data-i="l5">Si le logiciel anime vos soirées, un petit don aide à le faire vivre. Objectif en cours : un Reloop Terminal Mix 8, pour intégrer son mapping et tester le mode 4 platines sur un vrai contrôleur.</p>
+        <small data-i="s5">Dons sur Ko-fi : montant libre, par carte bancaire ou PayPal, sans créer de compte.</small></div>
+      <div class="sbtn">
+        <a class="btn pri" href="https://ko-fi.com/djlatinjazz" target="_blank" rel="noopener"><svg style="width:20px;height:20px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.1 4.3 2.4h2c.7-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21Z"/></svg><span data-i="don2">Faire un don sur Ko-fi</span></a>
+        <a class="btn ghost" href="https://github.com/Deltapassion/Platine-Duo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></svg><span data-i="star">Une étoile sur GitHub</span></a>
+        <a class="btn ghost" href="https://github.com/Deltapassion/Platine-Duo/issues/new?template=bug.yml" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M12 11v9M9 4l1.5 3M15 4l-1.5 3M3 12h4M17 12h4M4 18l3.5-2M20 18l-3.5-2M4 7l3.5 2M20 7l-3.5 2"/></svg><span data-i="bug">Signaler un bug</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controleurs">
+  <div class="wrap ctl">
+    <div>
+      <div class="kicker" data-i="k3">Contrôleurs</div>
+      <h2 data-i="h3">Branchez, c'est reconnu</h2>
+      <p class="lead" data-i="l3">Au branchement, Platine Duo reconnaît le contrôleur et propose le bon mapping. Pour les autres, le mode apprentissage relie chaque bouton en deux clics.</p>
+      <div class="chips"><span>Gemini GMX</span><span>Reloop Beatpad</span><span>Reloop Terminal Mix 2 / 4</span><span>Hercules Inpulse 200</span><span>Hercules Inpulse 500</span><span>Pioneer DDJ-FLX4</span><span>Pioneer DDJ-400</span><span data-i="mx">+ mappings Mixxx</span></div>
+    </div>
+    <figure><img src="captures/controleur.png" alt="" width="520" loading="lazy"></figure>
+  </div>
+</section>
+
+<section id="notice" style="padding-top:20px">
+  <div class="wrap">
+    <div class="doc">
+      <div>
+        <div class="kicker" data-i="k4">Notice</div>
+        <h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:8px" data-i="h4">Notice illustrée en 6 langues</h2>
+        <p data-i="l4">Chaque écran expliqué avec des repères numérotés : platines, table de mixage, Auto DJ, soirée par styles, sampleur, contrôleurs.</p>
+      </div>
+      <div class="links">
+        <a class="btn pri" href="notice-platine-duo-4v.html" data-i="nt">Lire la notice</a>
+        <a class="btn sec" href="notice-platine-duo-1.1.0.html" style="background:var(--panel2);border-color:var(--line)" data-i="nt1">Notice 1.1.0</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Platine Duo 4V</b> · 2.0.0<br><span data-i="ft">Créé par Jacques Branas, alias DJ LATIN JAZZ, en collaboration avec Claude.ai.</span></div>
+    <div><span data-i="lic">Logiciel libre sous licence</span> <a href="https://github.com/Deltapassion/Platine-Duo/blob/main/LICENSE">GNU GPL v2+</a><br><a href="https://github.com/Deltapassion/Platine-Duo">github.com/Deltapassion/Platine-Duo</a> · <a href="mailto:deltapassion@gmx.com">deltapassion@gmx.com</a><br><a href="https://github.com/Deltapassion/Platine-Duo/issues/new?template=bug.yml" data-i="bug3">Signaler un bug</a> · <a href="https://ko-fi.com/djlatinjazz">Ko-fi</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var T = {
+    en:{don:'Donate',don2:'Donate on Ko-fi',k5:'Support',h5:'Platine Duo is free and will stay free',l5:'If the software livens up your parties, a small donation helps keep it going. Current goal: a Reloop Terminal Mix 8, to add its mapping and test 4-deck mode on a real controller.',s5:'Donations on Ko-fi: any amount, by card or PayPal, no account needed.',star:'A star on GitHub',bug:'Report a bug',bug2:'Report a bug',bug3:'Report a bug',vid:'Nader Couri\'s flight over Rio: the picture that inspired the icon. Free at last!',vfb:'Watch the video on Facebook',ph:'Photo of pilot Nader Couri',nav1:'Features',nav2:'Download',nav3:'Controllers',nav4:'Manual',tag:'The free and open-source DJ mixing software: 2 or 4 decks, Auto DJ by dance style, sampler and MIDI controllers.',by:'Created by',with:'in collaboration with Claude.ai',dl:'Download',try:'Try it in your browser',m1:'Free, no ads',m2:'Free software, GNU GPL',m4:'6 languages',cap:'4-deck mode: A, B, C and D, each with its own colour.',k1:'Features',h1:'Everything to mix a party',l1:'Designed by a DJ for dance nights: easy to pick up, complete when you need it.',f1t:'2 or 4 decks',f1:'Waveforms, BPM, SYNC, 8 hot cues, loops, echo, flanger and reverb. One button switches between 2 and 4 decks.',f2t:'Mixer',f2:'Gain, 3-band EQ, filter, headphones, crossfader with XF START: pushing the crossfader starts the deck.',f3t:'Party by style',f3:'Auto DJ plays 3 salsas, 3 bachatas, 3 kizombas… from your folders. Perfect for SBK, semba or tango nights.',f4t:'8-pad sampler',f4:'Alarm, police, bell, air horn, siren, applause, laser… and your own sound on pad 8.',f5t:'DJ controllers',f5:'MIDI, USB HID and Bluetooth MIDI, detected when plugged in. Mixxx mappings import as they are.',f6t:'Free, in 6 languages',f6:'Français, English, español, Deutsch, italiano, português. Open source under the GNU GPL.',k2:'Download · version 2.0.0',h2:'Choose your system',l2:'Free, no sign-up. The right file for your computer is highlighted.',yours:'Your system',hWin:'Double-click the installer. If it says "Windows protected your PC": More info › Run anyway.',sArm:'M1, M2, M3, M4 chips · macOS 12 or later',hMac:'Open the .zip and drag the app to Applications. First launch: System Settings › Privacy & Security › Open Anyway.',sIntel:'Intel processor · macOS 12 or later',hIntel:'To check which Mac you have: Apple menu › About This Mac ("Chip" or "Intel processor").',hDeb:'Double-click to install, or in a terminal: sudo apt install ./platine-duo_2.0.0_amd64.3.deb',sApp:'Any distribution (64-bit)',hApp:'Make the file executable (right-click › Properties, or chmod +x), then double-click. No installation.',nav:'Browser',hHtml:'A single file, no installation: open it in Chrome, Edge or Opera on a computer. Or try it online right away.',get:'Download',n1:'Close Mixxx before starting Platine Duo: a controller can only serve one program at a time.',all:'All versions',old:'Older version 1.1.0 (Windows)',src:'Source code',k3:'Controllers',h3:'Plug it in, it is recognised',l3:'When you plug it in, Platine Duo recognises the controller and offers the right mapping. For others, learn mode links each button in two clicks.',mx:'+ Mixxx mappings',k4:'Manual',h4:'Illustrated manual in 6 languages',l4:'Every screen explained with numbered markers: decks, mixer, Auto DJ, party by style, sampler, controllers.',nt:'Read the manual',nt1:'Manual 1.1.0',ft:'Created by Jacques Branas, alias DJ LATIN JAZZ, in collaboration with Claude.ai.',lic:'Free software under the'},
+    es:{don:'Donar',don2:'Donar en Ko-fi',k5:'Apoyar',h5:'Platine Duo es gratuito y lo seguirá siendo',l5:'Si el programa anima sus fiestas, una pequeña donación ayuda a mantenerlo vivo. Objetivo actual: un Reloop Terminal Mix 8, para integrar su mapping y probar el modo 4 platos en un controlador real.',s5:'Donaciones en Ko-fi: importe libre, con tarjeta o PayPal, sin crear cuenta.',star:'Una estrella en GitHub',bug:'Informar de un error',bug2:'Informar de un error',bug3:'Informar de un error',vid:'El vuelo de Nader Couri sobre Río: la imagen que inspiró el icono. ¡Por fin libre!',vfb:'Ver el vídeo en Facebook',ph:'Foto del piloto Nader Couri',nav1:'Funciones',nav2:'Descargar',nav3:'Controladores',nav4:'Manual',tag:'El programa de mezcla DJ libre y gratuito: 2 o 4 platos, Auto DJ por estilos de baile, sampler y controladores MIDI.',by:'Creado por',with:'en colaboración con Claude.ai',dl:'Descargar',try:'Probar en el navegador',m1:'Gratis, sin publicidad',m2:'Software libre GNU GPL',m4:'6 idiomas',cap:'Modo 4 platos: A, B, C y D, cada uno con su color.',k1:'Funciones',h1:'Todo para mezclar una fiesta',l1:'Pensado por un DJ para las noches de baile: fácil de usar y completo cuando hace falta.',f1t:'2 o 4 platos',f1:'Formas de onda, BPM, SYNC, 8 puntos, bucles, eco, flanger y reverb. Un botón pasa de 2 a 4 platos.',f2t:'Mesa de mezclas',f2:'Gain, ecualizador de 3 bandas, filtro, auriculares, crossfader con XF START: al empujar el crossfader arranca el plato.',f3t:'Fiesta por estilos',f3:'El Auto DJ encadena 3 salsas, 3 bachatas, 3 kizombas… desde sus carpetas. Ideal para noches SBK, semba o tango.',f4t:'Sampler de 8 pads',f4:'Alarma, policía, campana, bocina, sirena, aplausos, láser… y su propio sonido en el pad 8.',f5t:'Controladores DJ',f5:'MIDI, USB HID y Bluetooth MIDI, reconocidos al conectarlos. Los mappings de Mixxx se importan tal cual.',f6t:'Libre y en 6 idiomas',f6:'Français, English, español, Deutsch, italiano, português. Código abierto bajo licencia GNU GPL.',k2:'Descargar · versión 2.0.0',h2:'Elija su sistema',l2:'Gratis, sin registro. El archivo adecuado para su ordenador aparece resaltado.',yours:'Su sistema',hWin:'Haga doble clic en el instalador. Si aparece «Windows protegió su PC»: Más información › Ejecutar de todas formas.',sArm:'Chips M1, M2, M3, M4 · macOS 12 o posterior',hMac:'Abra el .zip y arrastre la aplicación a Aplicaciones. Primer inicio: Ajustes del Sistema › Privacidad y seguridad › Abrir igualmente.',sIntel:'Procesador Intel · macOS 12 o posterior',hIntel:'Para saber qué Mac tiene: menú Apple › Acerca de este Mac («Chip» o «Procesador Intel»).',hDeb:'Doble clic para instalarlo, o en un terminal: sudo apt install ./platine-duo_2.0.0_amd64.3.deb',sApp:'Todas las distribuciones (64 bits)',hApp:'Haga el archivo ejecutable (clic derecho › Propiedades, o chmod +x) y luego doble clic. Sin instalación.',nav:'Navegador',hHtml:'Un solo archivo, sin instalación: ábralo en Chrome, Edge u Opera en un ordenador. O pruébelo en línea directamente.',get:'Descargar',n1:'Cierre Mixxx antes de abrir Platine Duo: un controlador solo sirve a un programa a la vez.',all:'Todas las versiones',old:'Versión anterior 1.1.0 (Windows)',src:'Código fuente',k3:'Controladores',h3:'Conéctelo y se reconoce',l3:'Al conectarlo, Platine Duo reconoce el controlador y propone el mapping adecuado. Para los demás, el modo aprendizaje vincula cada botón en dos clics.',mx:'+ mappings de Mixxx',k4:'Manual',h4:'Manual ilustrado en 6 idiomas',l4:'Cada pantalla explicada con marcas numeradas: platos, mesa de mezclas, Auto DJ, fiesta por estilos, sampler, controladores.',nt:'Leer el manual',nt1:'Manual 1.1.0',ft:'Creado por Jacques Branas, alias DJ LATIN JAZZ, en colaboración con Claude.ai.',lic:'Software libre bajo licencia'},
+    de:{don:'Spenden',don2:'Auf Ko-fi spenden',k5:'Unterstützen',h5:'Platine Duo ist kostenlos und bleibt es',l5:'Wenn die Software Ihre Partys belebt, hilft eine kleine Spende, sie weiterzuentwickeln. Aktuelles Ziel: ein Reloop Terminal Mix 8, um sein Mapping einzubauen und den 4-Deck-Modus an einem echten Controller zu testen.',s5:'Spenden über Ko-fi: Betrag frei wählbar, per Karte oder PayPal, ohne Konto.',star:'Ein Stern auf GitHub',bug:'Fehler melden',bug2:'Fehler melden',bug3:'Fehler melden',vid:'Nader Couris Flug über Rio: das Bild, das das Symbol inspiriert hat. Endlich frei!',vfb:'Video auf Facebook ansehen',ph:'Foto des Piloten Nader Couri',nav1:'Funktionen',nav2:'Download',nav3:'Controller',nav4:'Anleitung',tag:'Die freie und kostenlose DJ-Mix-Software: 2 oder 4 Decks, Auto DJ nach Tanzstilen, Sampler und MIDI-Controller.',by:'Erstellt von',with:'in Zusammenarbeit mit Claude.ai',dl:'Herunterladen',try:'Im Browser ausprobieren',m1:'Kostenlos, ohne Werbung',m2:'Freie Software, GNU GPL',m4:'6 Sprachen',cap:'4-Deck-Modus: A, B, C und D, jedes in seiner Farbe.',k1:'Funktionen',h1:'Alles, um eine Party zu mixen',l1:'Von einem DJ für Tanzabende entwickelt: schnell erlernt und vollständig, wenn man es braucht.',f1t:'2 oder 4 Decks',f1:'Wellenformen, BPM, SYNC, 8 Cue-Punkte, Loops, Echo, Flanger und Hall. Ein Knopf wechselt zwischen 2 und 4 Decks.',f2t:'Mixer',f2:'Gain, 3-Band-EQ, Filter, Kopfhörer, Crossfader mit XF START: Schieben des Crossfaders startet das Deck.',f3t:'Party nach Stilen',f3:'Auto DJ spielt 3 Salsas, 3 Bachatas, 3 Kizombas… aus Ihren Ordnern. Ideal für SBK-, Semba- oder Tango-Abende.',f4t:'Sampler mit 8 Pads',f4:'Alarm, Polizei, Glocke, Horn, Sirene, Applaus, Laser… und Ihr eigener Sound auf Pad 8.',f5t:'DJ-Controller',f5:'MIDI, USB HID und Bluetooth MIDI, beim Anschließen erkannt. Mixxx-Mappings lassen sich direkt importieren.',f6t:'Frei und in 6 Sprachen',f6:'Français, English, español, Deutsch, italiano, português. Offener Quellcode unter der GNU GPL.',k2:'Download · Version 2.0.0',h2:'Wählen Sie Ihr System',l2:'Kostenlos, ohne Anmeldung. Die passende Datei für Ihren Computer ist hervorgehoben.',yours:'Ihr System',hWin:'Installationsprogramm doppelklicken. Bei „Der Computer wurde durch Windows geschützt": Weitere Informationen › Trotzdem ausführen.',sArm:'Chips M1, M2, M3, M4 · macOS 12 oder neuer',hMac:'Die .zip öffnen und die App in „Programme" ziehen. Erster Start: Systemeinstellungen › Datenschutz & Sicherheit › Dennoch öffnen.',sIntel:'Intel-Prozessor · macOS 12 oder neuer',hIntel:'Welcher Mac? Apple-Menü › Über diesen Mac („Chip" oder „Intel-Prozessor").',hDeb:'Doppelklick zum Installieren oder im Terminal: sudo apt install ./platine-duo_2.0.0_amd64.3.deb',sApp:'Alle Distributionen (64 Bit)',hApp:'Datei ausführbar machen (Rechtsklick › Eigenschaften oder chmod +x), dann doppelklicken. Keine Installation.',nav:'Browser',hHtml:'Eine einzige Datei, ohne Installation: in Chrome, Edge oder Opera am Computer öffnen. Oder direkt online ausprobieren.',get:'Herunterladen',n1:'Schließen Sie Mixxx vor dem Start: Ein Controller dient immer nur einem Programm.',all:'Alle Versionen',old:'Ältere Version 1.1.0 (Windows)',src:'Quellcode',k3:'Controller',h3:'Anschließen, erkannt',l3:'Beim Anschließen erkennt Platine Duo den Controller und schlägt das passende Mapping vor. Für andere verknüpft der Lernmodus jede Taste mit zwei Klicks.',mx:'+ Mixxx-Mappings',k4:'Anleitung',h4:'Bebilderte Anleitung in 6 Sprachen',l4:'Jeder Bildschirm mit nummerierten Markierungen erklärt: Decks, Mixer, Auto DJ, Party nach Stilen, Sampler, Controller.',nt:'Anleitung lesen',nt1:'Anleitung 1.1.0',ft:'Erstellt von Jacques Branas, alias DJ LATIN JAZZ, in Zusammenarbeit mit Claude.ai.',lic:'Freie Software unter der'},
+    it:{don:'Dona',don2:'Dona su Ko-fi',k5:'Sostieni',h5:'Platine Duo è gratuito e lo resterà',l5:'Se il programma anima le tue serate, una piccola donazione aiuta a farlo vivere. Obiettivo attuale: un Reloop Terminal Mix 8, per integrarne la mappatura e provare la modalità 4 deck su un controller vero.',s5:'Donazioni su Ko-fi: importo libero, con carta o PayPal, senza creare un account.',star:'Una stella su GitHub',bug:'Segnala un bug',bug2:'Segnala un bug',bug3:'Segnala un bug',vid:'Il volo di Nader Couri sopra Rio: l\'immagine che ha ispirato l\'icona. Finalmente liberi!',vfb:'Guarda il video su Facebook',ph:'Foto del pilota Nader Couri',nav1:'Funzioni',nav2:'Scarica',nav3:'Controller',nav4:'Manuale',tag:'Il software di mixaggio DJ libero e gratuito: 2 o 4 deck, Auto DJ per stili di ballo, campionatore e controller MIDI.',by:'Creato da',with:'in collaborazione con Claude.ai',dl:'Scarica',try:'Prova nel browser',m1:'Gratis, senza pubblicità',m2:'Software libero GNU GPL',m4:'6 lingue',cap:'Modalità 4 deck: A, B, C e D, ognuno con il suo colore.',k1:'Funzioni',h1:'Tutto per mixare una serata',l1:'Pensato da un DJ per le serate di ballo: facile da usare, completo quando serve.',f1t:'2 o 4 deck',f1:'Forme d\'onda, BPM, SYNC, 8 cue, loop, eco, flanger e riverbero. Un pulsante passa da 2 a 4 deck.',f2t:'Mixer',f2:'Gain, equalizzatore a 3 bande, filtro, cuffie, crossfader con XF START: spingendo il crossfader parte il deck.',f3t:'Serata per stili',f3:'L\'Auto DJ suona 3 salse, 3 bachate, 3 kizombe… dalle tue cartelle. Perfetto per serate SBK, semba o tango.',f4t:'Campionatore a 8 pad',f4:'Allarme, polizia, campana, trombetta, sirena, applausi, laser… e il tuo suono sul pad 8.',f5t:'Controller DJ',f5:'MIDI, USB HID e Bluetooth MIDI, riconosciuti al collegamento. Le mappature Mixxx si importano così come sono.',f6t:'Libero e in 6 lingue',f6:'Français, English, español, Deutsch, italiano, português. Codice aperto con licenza GNU GPL.',k2:'Scarica · versione 2.0.0',h2:'Scegli il tuo sistema',l2:'Gratis, senza registrazione. Il file giusto per il tuo computer è evidenziato.',yours:'Il tuo sistema',hWin:'Fai doppio clic sul programma di installazione. Se compare «PC protetto da Windows»: Ulteriori informazioni › Esegui comunque.',sArm:'Chip M1, M2, M3, M4 · macOS 12 o successivo',hMac:'Apri il .zip e trascina l\'app in Applicazioni. Primo avvio: Impostazioni di Sistema › Privacy e sicurezza › Apri comunque.',sIntel:'Processore Intel · macOS 12 o successivo',hIntel:'Per sapere quale Mac hai: menu Apple › Informazioni su questo Mac («Chip» o «Processore Intel»).',hDeb:'Doppio clic per installarlo, oppure in un terminale: sudo apt install ./platine-duo_2.0.0_amd64.3.deb',sApp:'Tutte le distribuzioni (64 bit)',hApp:'Rendi eseguibile il file (clic destro › Proprietà, oppure chmod +x), poi doppio clic. Nessuna installazione.',nav:'Browser',hHtml:'Un unico file, senza installazione: aprilo in Chrome, Edge o Opera su computer. Oppure provalo subito online.',get:'Scarica',n1:'Chiudi Mixxx prima di avviare Platine Duo: un controller serve un solo programma alla volta.',all:'Tutte le versioni',old:'Versione precedente 1.1.0 (Windows)',src:'Codice sorgente',k3:'Controller',h3:'Collegalo, viene riconosciuto',l3:'Al collegamento, Platine Duo riconosce il controller e propone la mappatura giusta. Per gli altri, la modalità apprendimento collega ogni tasto in due clic.',mx:'+ mappature Mixxx',k4:'Manuale',h4:'Manuale illustrato in 6 lingue',l4:'Ogni schermata spiegata con riferimenti numerati: deck, mixer, Auto DJ, serata per stili, campionatore, controller.',nt:'Leggi il manuale',nt1:'Manuale 1.1.0',ft:'Creato da Jacques Branas, alias DJ LATIN JAZZ, in collaborazione con Claude.ai.',lic:'Software libero con licenza'},
+    pt:{don:'Doar',don2:'Doar no Ko-fi',k5:'Apoiar',h5:'O Platine Duo é gratuito e continuará sendo',l5:'Se o programa anima suas festas, uma pequena doação ajuda a mantê-lo vivo. Meta atual: um Reloop Terminal Mix 8, para integrar seu mapeamento e testar o modo 4 decks num controlador de verdade.',s5:'Doações no Ko-fi: valor livre, com cartão ou PayPal, sem criar conta.',star:'Uma estrela no GitHub',bug:'Relatar um bug',bug2:'Relatar um bug',bug3:'Relatar um bug',vid:'O voo de Nader Couri sobre o Rio: a imagem que inspirou o ícone. Enfim livre!',vfb:'Ver o vídeo no Facebook',ph:'Foto do piloto Nader Couri',nav1:'Funções',nav2:'Baixar',nav3:'Controladores',nav4:'Manual',tag:'O programa de mixagem DJ livre e gratuito: 2 ou 4 decks, Auto DJ por estilos de dança, sampler e controladores MIDI.',by:'Criado por',with:'em colaboração com o Claude.ai',dl:'Baixar',try:'Experimentar no navegador',m1:'Grátis, sem anúncios',m2:'Software livre GNU GPL',m4:'6 idiomas',cap:'Modo 4 decks: A, B, C e D, cada um com sua cor.',k1:'Funções',h1:'Tudo para mixar uma festa',l1:'Pensado por um DJ para noites de dança: fácil de usar e completo quando é preciso.',f1t:'2 ou 4 decks',f1:'Formas de onda, BPM, SYNC, 8 pontos, loops, eco, flanger e reverb. Um botão passa de 2 para 4 decks.',f2t:'Mixer',f2:'Gain, equalizador de 3 bandas, filtro, fones, crossfader com XF START: empurrar o crossfader inicia o deck.',f3t:'Festa por estilos',f3:'O Auto DJ toca 3 salsas, 3 bachatas, 3 kizombas… das suas pastas. Ideal para noites de SBK, semba ou tango.',f4t:'Sampler de 8 pads',f4:'Alarme, polícia, sino, buzina, sirene, aplausos, laser… e seu próprio som no pad 8.',f5t:'Controladores DJ',f5:'MIDI, USB HID e Bluetooth MIDI, reconhecidos ao conectar. Os mapeamentos do Mixxx são importados como estão.',f6t:'Livre e em 6 idiomas',f6:'Français, English, español, Deutsch, italiano, português. Código aberto sob licença GNU GPL.',k2:'Baixar · versão 2.0.0',h2:'Escolha seu sistema',l2:'Grátis, sem cadastro. O arquivo certo para o seu computador aparece em destaque.',yours:'Seu sistema',hWin:'Dê um clique duplo no instalador. Se aparecer «O Windows protegeu o computador»: Mais informações › Executar assim mesmo.',sArm:'Chips M1, M2, M3, M4 · macOS 12 ou posterior',hMac:'Abra o .zip e arraste o app para Aplicativos. Primeira abertura: Ajustes do Sistema › Privacidade e Segurança › Abrir Mesmo Assim.',sIntel:'Processador Intel · macOS 12 ou posterior',hIntel:'Para saber qual é o seu Mac: menu Apple › Sobre Este Mac («Chip» ou «Processador Intel»).',hDeb:'Clique duplo para instalar, ou num terminal: sudo apt install ./platine-duo_2.0.0_amd64.3.deb',sApp:'Todas as distribuições (64 bits)',hApp:'Torne o arquivo executável (clique direito › Propriedades, ou chmod +x) e dê um clique duplo. Sem instalação.',nav:'Navegador',hHtml:'Um único arquivo, sem instalação: abra no Chrome, Edge ou Opera num computador. Ou experimente direto online.',get:'Baixar',n1:'Feche o Mixxx antes de abrir o Platine Duo: um controlador só serve a um programa de cada vez.',all:'Todas as versões',old:'Versão anterior 1.1.0 (Windows)',src:'Código-fonte',k3:'Controladores',h3:'Conecte e ele é reconhecido',l3:'Ao conectar, o Platine Duo reconhece o controlador e propõe o mapeamento certo. Para os outros, o modo aprendizado vincula cada botão em dois cliques.',mx:'+ mapeamentos do Mixxx',k4:'Manual',h4:'Manual ilustrado em 6 idiomas',l4:'Cada tela explicada com marcadores numerados: decks, mixer, Auto DJ, festa por estilos, sampler, controladores.',nt:'Ler o manual',nt1:'Manual 1.1.0',ft:'Criado por Jacques Branas, alias DJ LATIN JAZZ, em colaboração com o Claude.ai.',lic:'Software livre sob a licença'}
+  };
+  var FR = {}, els = document.querySelectorAll('[data-i]');
+  els.forEach(function(e){ FR[e.getAttribute('data-i')] = e.textContent; });
+  T.fr = FR;
+  var OSN = {win:'Windows','mac-arm':'Mac','mac-intel':'Mac',deb:'Linux',appimage:'Linux',html:''};
+  var mine = detect();
+
+  function store(k, v){ try { v === undefined ? (v = localStorage.getItem(k)) : localStorage.setItem(k, v); } catch(e){ v = null; } return v; }
+  function setLang(l){
+    if (!T[l]) l = 'fr';
+    var d = T[l];
+    els.forEach(function(e){ var k = e.getAttribute('data-i'); if (d[k] != null) e.textContent = d[k]; else if (FR[k] != null) e.textContent = FR[k]; });
+    document.documentElement.lang = l;
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.l === l); });
+    document.getElementById('shotImg').src = l === 'fr' ? 'assets/ecran-4v.jpg' : 'assets/ecran-4v-en.jpg';
+    var t = document.getElementById('mainDlTxt');
+    if (mine && OSN[mine]) t.textContent = (d.dl || FR.dl) + ' — ' + OSN[mine];
+    store('pd-lang', l);
+  }
+  function detect(){
+    var ua = navigator.userAgent || '', p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    if (/android|iphone|ipad|ipod/i.test(ua)) return null;
+    if (/win/i.test(p) || /windows/i.test(ua)) return 'win';
+    if (/mac/i.test(p) || /mac os x/i.test(ua)) return isAppleSilicon() ? 'mac-arm' : 'mac-intel';
+    if (/linux|x11/i.test(p + ua)) return /ubuntu|debian|mint/i.test(ua) ? 'deb' : 'appimage';
+    return null;
+  }
+  function isAppleSilicon(){
+    // Safari et Chrome se présentent tous comme « Intel » : on regarde la carte graphique
+    try { var c = document.createElement('canvas').getContext('webgl'); var x = c && c.getExtension('WEBGL_debug_renderer_info');
+      var r = x ? c.getParameter(x.UNMASKED_RENDERER_WEBGL) : ''; if (/apple m\d|apple gpu/i.test(r)) return true; if (/intel|amd|radeon|nvidia/i.test(r)) return false; } catch(e){}
+    return true; // la plupart des Mac récents
+  }
+  if (mine) {
+    var card = document.querySelector('.os[data-os="' + mine + '"]');
+    if (card) { card.classList.add('mine'); var a = card.querySelector('a.btn'); var m = document.getElementById('mainDl'); m.href = a.href; }
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.l); }); });
+  var saved = store('pd-lang'), nav = (navigator.language || 'fr').slice(0, 2);
+  setLang(saved || (T[nav] ? nav : 'fr'));
+
+  var top = document.getElementById('top');
+  function onScroll(){ top.classList.toggle('solid', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+})();
+</script>
+</body>
+</html>
