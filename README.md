@@ -1,16 +1,26 @@
 # Platine Duo 4V
 
 **Logiciel de mix DJ libre — Free DJ mixing software**
-Windows · Mac · Linux · Android · navigateur (Chrome, Edge, Opera)
+Windows · Mac · Linux · Android · navigateur (Chrome, Edge, Opera tout navigateur gérant le MIDI)
 
 ![Platine Duo 4V en mode 4 voies](docs/captures/ecran-4v-fr.png)
 
 **Site : https://deltapassion.github.io/Platine-Duo/** · essai en ligne : https://deltapassion.github.io/Platine-Duo/app/
 
-Créé par **Jacques Branas, alias DJ LATIN JAZZ**, en collaboration avec Claude.ai (Anthropic).
+Créé par **Jacques Branas, alias DJ LATIN JAZZ**, en collaboration avec Claude.ai (Anthropic) en réponse au fait que ma licence VirtualDJ ne peux pas fonctionner (je suis le nouveau propriétaire d'un controleur Gemini GMX).
 Logiciel libre sous licence **GNU GPL version 2 ou ultérieure**. Contact : deltapassion@gmx.com
 
 *English below.*
+**Free DJ mixing software**
+Windows · Mac · Linux · Android · Browser (Chrome, Edge, Opera, or any browser that supports MIDI)
+
+![Platine Duo 4V in 4-deck mode](docs/captures/ecran-4v-fr.png)
+
+**Website: https://deltapassion.github.io/Platine-Duo/** · Try it online: https://deltapassion.github.io/Platine-Duo/app/
+
+Created by **Jacques Branas, alias DJ LATIN JAZZ**, in collaboration with Claude.ai (Anthropic), as a solution to an issue where my VirtualDJ license would not work (I am the new owner of a Gemini GMX controller).
+Free software licensed under the **GNU GPL version 2 or later**. Contact: deltapassion@gmx.com
+
 
 ---
 
