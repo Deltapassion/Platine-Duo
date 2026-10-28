@@ -14,8 +14,6 @@ Logiciel libre sous licence **GNU GPL version 2 ou ultérieure**. Contact : delt
 **Free DJ mixing software**
 Windows · Mac · Linux · Android · Browser (Chrome, Edge, Opera, or any browser that supports MIDI)
 
-![Platine Duo 4V in 4-deck mode](docs/captures/ecran-4v-fr.png)
-
 **Website: https://deltapassion.github.io/Platine-Duo/** · Try it online: https://deltapassion.github.io/Platine-Duo/app/
 
 Created by **Jacques Branas, alias DJ LATIN JAZZ**, in collaboration with Claude.ai (Anthropic), as a solution to an issue where my VirtualDJ license would not work (I am the new owner of a Gemini GMX controller).
