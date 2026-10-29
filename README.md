@@ -1,7 +1,7 @@
 # Platine Duo 4V
 
 **Logiciel de mix DJ libre — Free DJ mixing software**
-Windows · Mac · Linux · Android · navigateur (Chrome, Edge, Opera tout navigateur gérant le MIDI)
+Windows · Mac · Linux · Android · iPhone · navigateur (Chrome, Edge, Opera tout navigateur gérant le MIDI)
 
 ![Platine Duo 4V en mode 4 voies](docs/captures/ecran-4v-fr.png)
 
@@ -13,7 +13,7 @@ Logiciel libre sous licence **GNU GPL version 2 ou ultérieure**. Contact : delt
 *English below.*
 
 **Free DJ mixing software**
-Windows · Mac · Linux · Android · Browser (Chrome, Edge, Opera, or any browser that supports MIDI)
+Windows · Mac · Linux · Android · iPhone · Browser (Chrome, Edge, Opera, or any browser that supports MIDI)
 
 **Website: https://deltapassion.github.io/Platine-Duo/** · Try it online: https://deltapassion.github.io/Platine-Duo/app/
 
@@ -48,6 +48,7 @@ Les fichiers sont dans la rubrique **Releases** (à droite sur cette page).
 | Ubuntu, Debian, Mint | `platine-duo_2.0.0_amd64.3.deb` | `sudo apt install ./platine-duo_2.0.0_amd64.3.deb` (remplace la version 1.1.0) |
 | Toute distribution Linux (PC 64 bits) | `Platine-Duo-4V-2.0.0-x86_64.3.AppImage` | `chmod +x Platine-Duo-4V-2.0.0-x86_64.3.AppImage` puis double-clic. Si rien ne s'ouvre sur Ubuntu 22.04 ou plus récent : `sudo apt install libfuse2` (24.04 : `libfuse2t64`). Pour un contrôleur en USB HID (écrans du GMX), installez une fois les règles d'accès : voir plus bas. |
 | Android (tablettes et téléphones) | en ligne : https://deltapassion.github.io/Platine-Duo/app/ | Ouvrir dans Chrome, puis menu ⋮ › « Installer l'application ». Contrôleurs MIDI en USB (câble OTG). Bientôt sur Google Play. |
+| iPhone et iPad | en ligne : https://deltapassion.github.io/Platine-Duo/app/ | Ouvrir dans Safari, bouton Partager › « Sur l'écran d'accueil ». Au doigt : Apple ne permet pas encore les contrôleurs MIDI dans les navigateurs. |
 | Navigateur | `platine-duo-4v.html` | Ouvrir dans Chrome, Edge ou Opera sur ordinateur. |
 
 **Notice illustrée en 6 langues** : [docs/notice-platine-duo-4v.html](docs/notice-platine-duo-4v.html) (téléchargez le fichier et ouvrez-le dans votre navigateur ; notice de la 1.1.0 : [docs/notice-platine-duo-1.1.0.html](docs/notice-platine-duo-1.1.0.html)).
