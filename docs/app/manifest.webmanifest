@@ -1,7 +1,7 @@
 {
-  "name": "Platine Duo",
-  "short_name": "Platine Duo",
-  "description": "Logiciel de mix DJ libre et gratuit : platines, Auto DJ par styles de danse, sampleur et contrôleurs MIDI.",
+  "name": "Platine DUO",
+  "short_name": "Platine DUO",
+  "description": "Logiciel de mix DJ libre et gratuit : platines, timeline, Auto DJ par styles de danse, sampleur et contrôleurs MIDI.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

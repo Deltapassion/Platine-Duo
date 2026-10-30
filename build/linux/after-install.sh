@@ -1,7 +1,7 @@
 #!/bin/sh
-# Platine Duo 4V : réglages après installation
+# Platine DUO : réglages après installation
 set -e
-APP="/opt/Platine Duo 4V"
+APP="/opt/Platine DUO"
 # bac à sable de Chromium (nécessaire au démarrage sur Ubuntu 24.04 et suivants)
 if [ -f "$APP/chrome-sandbox" ]; then chown root:root "$APP/chrome-sandbox" || true; chmod 4755 "$APP/chrome-sandbox" || true; fi
 # accès des contrôleurs DJ USB HID pour l'utilisateur connecté (règles reprises du projet Mixxx)

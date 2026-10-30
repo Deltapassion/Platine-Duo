@@ -41,7 +41,7 @@ th{background:var(--panel)}
 <header>
   <div class="brand">PLATINE DUO <span style="font-weight:400;color:var(--mute)">· 1.1.0</span></div>
   <div class="langs" role="group" aria-label="Langue"><button type="button" data-l="fr">FR<span>Français</span></button><button type="button" data-l="en">EN<span>English</span></button><button type="button" data-l="es">ES<span>Español</span></button><button type="button" data-l="de">DE<span>Deutsch</span></button><button type="button" data-l="it">IT<span>Italiano</span></button><button type="button" data-l="pt">PT<span>Português</span></button></div>
-  <div class="links"><a id="lnkOther" href="notice-platine-duo-4v.html"></a><a id="lnkDl" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_1_1_0/Platine-Duo-Setup-1.1.0.exe" target="_blank" rel="noopener"></a><button type="button" id="btnPrint"></button></div>
+  <div class="links"><a id="lnkOther" href="notice-platine-duo.html"></a><a id="lnkDl" href="https://github.com/Deltapassion/Platine-Duo/releases/download/Version_1_1_0/Platine-Duo-Setup-1.1.0.exe" target="_blank" rel="noopener"></a><button type="button" id="btnPrint"></button></div>
 </header>
 <main>
 <article lang="fr" data-lang="fr" hidden><h1>Notice Platine Duo</h1><nav class="toc"><ol><li><a href="#fr-s1">Démarrer</a></li><li><a href="#fr-s2">L'écran en un coup d'œil</a></li><li><a href="#fr-s3">Une platine</a></li><li><a href="#fr-s4">La table de mixage</a></li><li><a href="#fr-s5">Ajouter de la musique</a></li><li><a href="#fr-s6">Auto DJ</a></li><li><a href="#fr-s7">Sampleur</a></li><li><a href="#fr-s8">Brancher un contrôleur</a></li><li><a href="#fr-s9">Réglages MIDI et casque du GMX</a></li><li><a href="#fr-s10">Apprendre les commandes d'un autre contrôleur</a></li><li><a href="#fr-s11">Langue, couleurs et contraste</a></li><li><a href="#fr-s12">Raccourcis clavier</a></li></ol></nav>
@@ -1117,7 +1117,7 @@ th{background:var(--panel)}
     document.querySelectorAll('article').forEach(function(a){ a.hidden = a.dataset.lang !== l; });
     document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.l === l ? 'true' : 'false'); });
     var t = UI[l];
-    var o = document.getElementById('lnkOther'); o.textContent = t[1] + ' : Platine Duo 4V 2.0.0'; o.href = 'notice-platine-duo-4v.html#lang=' + l;
+    var o = document.getElementById('lnkOther'); o.textContent = t[1] + ' : Platine DUO 2.1.0'; o.href = 'notice-platine-duo.html#lang=' + l;
     document.getElementById('lnkDl').textContent = t[2];
     document.getElementById('btnPrint').textContent = t[4];
     document.title = t[3] + ' Platine Duo 1.1.0';

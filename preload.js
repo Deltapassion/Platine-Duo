@@ -1,7 +1,7 @@
 // pont minimal et contrôlé entre la page et l'application (bac à sable activé)
 const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('pdNative', {
-  version: '2.0.0',
+  version: '2.1.0',
   onBtDevices: cb => { ipcRenderer.removeAllListeners('bt-devices'); ipcRenderer.on('bt-devices', (e, list) => cb(list)); },
   btSelect: id => ipcRenderer.send('bt-select', String(id || '')),
   fetchJson: url => ipcRenderer.invoke('net-json', String(url)),

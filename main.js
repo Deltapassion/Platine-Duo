@@ -1,4 +1,4 @@
-// Platine Duo 4V — application de bureau (Electron)
+// Platine DUO — application de bureau (Electron)
 // © 2026 Jacques Branas, en collaboration avec Claude.ai — logiciel libre, GNU GPL v2 ou ultérieure
 const { app, BrowserWindow, session, shell, ipcMain, Menu, net, dialog } = require('electron');
 const fs = require('fs'), crypto = require('crypto');
@@ -30,7 +30,7 @@ const fromPage = e => e.senderFrame && isOurPage(e.senderFrame.url);
 function createWindow(){
   win = new BrowserWindow({
     width: 1500, height: 920, minWidth: 1100, minHeight: 700, show: false,
-    title: 'Platine Duo 4V', backgroundColor: '#0a0c11', autoHideMenuBar: true,
+    title: 'Platine DUO', backgroundColor: '#0a0c11', autoHideMenuBar: true,
     icon: path.join(__dirname, 'build', 'icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -147,9 +147,9 @@ app.whenReady().then(() => {
   // Mac : menu de l'application et menu Édition (copier / coller avec Cmd dans les champs de texte)
   Menu.setApplicationMenu(Menu.buildFromTemplate(process.platform === 'darwin' ? [
     { label: app.name, submenu: [
-      { role: 'about', label: 'À propos de Platine Duo 4V' }, { type: 'separator' },
-      { role: 'hide', label: 'Masquer Platine Duo 4V' }, { role: 'hideOthers', label: 'Masquer les autres' }, { role: 'unhide', label: 'Tout afficher' },
-      { type: 'separator' }, { role: 'quit', label: 'Quitter Platine Duo 4V' }
+      { role: 'about', label: 'À propos de Platine DUO' }, { type: 'separator' },
+      { role: 'hide', label: 'Masquer Platine DUO' }, { role: 'hideOthers', label: 'Masquer les autres' }, { role: 'unhide', label: 'Tout afficher' },
+      { type: 'separator' }, { role: 'quit', label: 'Quitter Platine DUO' }
     ] },
     { label: 'Édition', submenu: [
       { role: 'undo', label: 'Annuler' }, { role: 'redo', label: 'Rétablir' }, { type: 'separator' },
@@ -161,7 +161,7 @@ app.whenReady().then(() => {
     { label: 'Fichier', submenu: [{ role: 'quit', label: 'Quitter' }] },
     view
   ]));
-  if (process.platform === 'darwin') app.setAboutPanelOptions({ applicationName: 'Platine Duo 4V', applicationVersion: app.getVersion(), copyright: '© 2026 Jacques Branas (DJ LATIN JAZZ), en collaboration avec Claude.ai — GNU GPL v2+' });
+  if (process.platform === 'darwin') app.setAboutPanelOptions({ applicationName: 'Platine DUO', applicationVersion: app.getVersion(), copyright: '© 2026 Jacques Branas (DJ LATIN JAZZ), en collaboration avec Claude.ai — GNU GPL v2+' });
   createWindow();
 });
 

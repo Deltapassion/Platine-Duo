@@ -11,7 +11,7 @@ for (const [dir, arch] of builds) {
   if (!fs.existsSync(app)) continue;
   if (process.platform === 'darwin') execFileSync('codesign', ['--force', '--deep', '--sign', '-', app], { stdio: 'inherit' });
   else execFileSync(process.env.RCODESIGN || 'rcodesign', ['sign', app], { stdio: 'inherit' });
-  const zip = path.join(dist, `Platine-Duo-4V-${pkg.version}-mac-${arch}.zip`);
+  const zip = path.join(dist, `Platine-DUO-${pkg.version}-mac-${arch}.zip`);
   if (fs.existsSync(zip)) fs.unlinkSync(zip);
   if (process.platform === 'darwin') execFileSync('ditto', ['-c', '-k', '--sequesterRsrc', '--keepParent', app, zip], { stdio: 'inherit' });
   else execFileSync('zip', ['-qry', zip, name], { cwd: path.dirname(app), stdio: 'inherit' });

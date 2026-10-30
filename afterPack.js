@@ -14,7 +14,7 @@ exports.default = async function (ctx) {
   if (vi) {
     const v = ctx.packager.appInfo.version.split('.').map(Number);
     vi.setFileVersion(v[0], v[1], v[2], 0); vi.setProductVersion(v[0], v[1], v[2], 0);
-    for (const l of vi.getAllLanguagesForStringValues()) vi.setStringValues(l, { ProductName: 'Platine Duo 4V', FileDescription: 'Platine Duo 4V', CompanyName: 'Jacques Branas', OriginalFilename: 'Platine Duo 4V.exe', InternalName: 'Platine Duo 4V', LegalCopyright: '© 2026 Jacques Branas, en collaboration avec Claude.ai — GNU GPL v2+' });
+    for (const l of vi.getAllLanguagesForStringValues()) vi.setStringValues(l, { ProductName: 'Platine DUO', FileDescription: 'Platine DUO', CompanyName: 'Jacques Branas', OriginalFilename: 'Platine DUO.exe', InternalName: 'Platine DUO', LegalCopyright: '© 2026 Jacques Branas, en collaboration avec Claude.ai — GNU GPL v2+' });
     vi.outputToResourceEntries(res.entries);
   }
   res.outputResource(pe);

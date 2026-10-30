@@ -1,11 +1,11 @@
-# Publier Platine Duo sur Google Play
+# Publier Platine DUO sur Google Play
 
 La version Android est déjà en ligne : https://deltapassion.github.io/Platine-Duo/app/
 Dans Chrome sur Android : menu ⋮ › « Installer l'application ». Elle s'ouvre en plein écran, fonctionne hors ligne
 et reconnaît les contrôleurs MIDI branchés en USB (câble OTG).
 
 Pour la mettre aussi sur le Play Store, on l'emballe en « Trusted Web Activity » : une vraie application Android
-qui ouvre Platine Duo dans Chrome, donc avec le MIDI. Voici les étapes.
+qui ouvre Platine DUO dans Chrome, donc avec le MIDI. Voici les étapes.
 
 ## 1. Le compte développeur (une seule fois)
 
@@ -18,7 +18,7 @@ qui ouvre Platine Duo dans Chrome, donc avec le MIDI. Voici les étapes.
 
 1. Ouvrir https://www.pwabuilder.com, coller l'adresse `https://deltapassion.github.io/Platine-Duo/app/`.
 2. **Package for stores › Android › Google Play**.
-3. Réglages : Package ID `fr.jacques.platineduo` ; nom `Platine Duo 4V` ; version `2.0.0` ;
+3. Réglages : Package ID `fr.jacques.platineduo` ; nom `Platine DUO` ; version `2.1.0` ;
    orientation « Any » ; affichage « Fullscreen ».
 4. Télécharger le paquet : il contient le fichier `.aab` (à envoyer à Google Play), la **clé de signature**
    (à garder précieusement, sans elle plus aucune mise à jour possible) et un fichier `assetlinks.json`.
@@ -36,13 +36,13 @@ Android vérifie que l'application et le site ont le même propriétaire. Le fic
 
 ## 4. La fiche Play Store
 
-- Nom : Platine Duo 4V — Description courte : « Logiciel de mix DJ libre : platines, Auto DJ par styles, contrôleurs MIDI ».
+- Nom : Platine DUO — Description courte : « Logiciel de mix DJ libre : platines, timeline, Auto DJ par styles, contrôleurs MIDI ».
 - Catégorie : Musique et audio. Prix : gratuit. Publicité : non.
 - Règles de confidentialité : `https://deltapassion.github.io/Platine-Duo/confidentialite.html`
 - Sécurité des données : aucune donnée collectée ni partagée.
-- Captures : téléphone et tablette (Platine Duo en mode Platines, Musique, Auto DJ).
+- Captures : téléphone et tablette (Platine DUO en mode Platines, Musique, Auto DJ).
 - Icône 512 × 512 : `docs/app/icon-512.png`. Bannière 1024 × 500 : à partir de `docs/assets/partage.jpg`.
-- Texte de rappel : « Platine Duo existe aussi pour PC Windows, Mac et Linux, et en version navigateur (HTML)
+- Texte de rappel : « Platine DUO existe aussi pour PC Windows, Mac et Linux, et en version navigateur (HTML)
   qui gère les contrôleurs MIDI dans Chrome, Edge et Opera : https://deltapassion.github.io/Platine-Duo/ »
 
 ## 5. Test fermé puis publication

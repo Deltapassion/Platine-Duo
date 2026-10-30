@@ -1,22 +1,22 @@
-; Installateur Windows de Platine Duo 4V
+; Installateur Windows de Platine DUO
 Unicode true
 SetCompressor /SOLID lzma
 !include "MUI2.nsh"
 !include "FileFunc.nsh"
 
-!define APPNAME "Platine Duo 4V"
-!define EXENAME "Platine Duo 4V.exe"
-!define VERSION "2.0.0"
+!define APPNAME "Platine DUO"
+!define EXENAME "Platine DUO.exe"
+!define VERSION "2.1.0"
 !define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\PlatineDuo"
 
 Name "${APPNAME}"
-OutFile "dist\Platine-Duo-4V-Setup-${VERSION}.exe"
+OutFile "dist\Platine-DUO-Setup-${VERSION}.exe"
 InstallDir "$LOCALAPPDATA\Programs\${APPNAME}"
 InstallDirRegKey HKCU "Software\PlatineDuo" "InstallDir"
 RequestExecutionLevel user
 BrandingText "${APPNAME} ${VERSION}"
 
-VIProductVersion "2.0.0.0"
+VIProductVersion "2.1.0.0"
 VIAddVersionKey /LANG=1036 "ProductName" "${APPNAME}"
 VIAddVersionKey /LANG=1036 "FileDescription" "Installation de ${APPNAME}"
 VIAddVersionKey /LANG=1036 "FileVersion" "${VERSION}"
@@ -28,12 +28,12 @@ VIAddVersionKey /LANG=1036 "LegalCopyright" "© 2026 Jacques Branas, en collabor
 !define MUI_UNICON "build\icon.ico"
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEPAGE_TITLE "Installation de ${APPNAME}"
-!define MUI_WELCOMEPAGE_TEXT "Platine Duo 4V, par DJ LATIN JAZZ (Jacques Branas) en collaboration avec Claude.ai, est un logiciel de mix à deux ou quatre platines, avec Auto DJ, sampleur et prise en charge des contrôleurs MIDI et USB HID (Gemini GMX, Reloop Beatpad, Hercules, Pioneer...).$\r$\n$\r$\nSi une version précédente de Platine Duo est installée, elle sera remplacée : vos réglages, mappings et sons du sampleur sont conservés.$\r$\n$\r$\nFermez Mixxx avant de lancer Platine Duo : un contrôleur ne peut être utilisé que par un seul logiciel à la fois.$\r$\n$\r$\nCliquez sur Suivant pour continuer."
+!define MUI_WELCOMEPAGE_TEXT "Platine DUO, par DJ LATIN JAZZ (Jacques Branas) en collaboration avec Claude.ai, est un logiciel de mix à deux ou quatre platines, avec timeline, Auto DJ, sampleur et prise en charge des contrôleurs MIDI et USB HID (Gemini GMX, Reloop Beatpad, Hercules, Pioneer...).$\r$\n$\r$\nSi une version précédente de Platine Duo est installée, elle sera remplacée : vos réglages, mappings et sons du sampleur sont conservés.$\r$\n$\r$\nFermez Mixxx avant de lancer Platine Duo : un contrôleur ne peut être utilisé que par un seul logiciel à la fois.$\r$\n$\r$\nCliquez sur Suivant pour continuer."
 !define MUI_FINISHPAGE_RUN "$INSTDIR\${EXENAME}"
 !define MUI_FINISHPAGE_RUN_TEXT "Lancer ${APPNAME}"
 
 !insertmacro MUI_PAGE_WELCOME
-!define MUI_LICENSEPAGE_TEXT_TOP "Platine Duo 4V est un logiciel libre, distribué sous licence GNU GPL version 2 ou ultérieure."
+!define MUI_LICENSEPAGE_TEXT_TOP "Platine DUO est un logiciel libre, distribué sous licence GNU GPL version 2 ou ultérieure."
 !define MUI_LICENSEPAGE_BUTTON "Suivant >"
 !define MUI_LICENSEPAGE_TEXT_BOTTOM "Vous pouvez utiliser, étudier, modifier et partager ce logiciel. Une version modifiée doit rester sous la même licence. Cliquez sur Suivant pour continuer."
 !insertmacro MUI_PAGE_LICENSE "LICENSE-GPL-2.0.txt"
@@ -165,9 +165,11 @@ Function .onInit
   ; l'ancien dossier par défaut « Platine Duo » est remplacé par celui de la nouvelle version
   StrCmp $INSTDIR "$LOCALAPPDATA\Programs\Platine Duo" 0 +2
   StrCpy $INSTDIR "$LOCALAPPDATA\Programs\${APPNAME}"
+  StrCmp $INSTDIR "$LOCALAPPDATA\Programs\Platine Duo 4V" 0 +2
+  StrCpy $INSTDIR "$LOCALAPPDATA\Programs\${APPNAME}"
 FunctionEnd
 
-Section "Platine Duo 4V" SecMain
+Section "Platine DUO" SecMain
   SetShellVarContext current
   ; ferme une instance en cours avant de remplacer les fichiers
   nsExec::Exec 'taskkill /IM "${EXENAME}" /F /T'
