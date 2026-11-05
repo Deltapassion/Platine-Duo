@@ -18,7 +18,7 @@ qui ouvre Platine DUO dans Chrome, donc avec le MIDI. Voici les étapes.
 
 1. Ouvrir https://www.pwabuilder.com, coller l'adresse `https://deltapassion.github.io/Platine-Duo/app/`.
 2. **Package for stores › Android › Google Play**.
-3. Réglages : Package ID `fr.jacques.platineduo` ; nom `Platine DUO` ; version `2.1.0` ;
+3. Réglages : Package ID `fr.jacques.platineduo` ; nom `Platine DUO` ; version `2.2.0` ;
    orientation « Any » ; affichage « Fullscreen ».
 4. Télécharger le paquet : il contient le fichier `.aab` (à envoyer à Google Play), la **clé de signature**
    (à garder précieusement, sans elle plus aucune mise à jour possible) et un fichier `assetlinks.json`.

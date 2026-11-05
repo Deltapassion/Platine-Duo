@@ -6,7 +6,7 @@ SetCompressor /SOLID lzma
 
 !define APPNAME "Platine DUO"
 !define EXENAME "Platine DUO.exe"
-!define VERSION "2.1.0"
+!define VERSION "2.2.0"
 !define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\PlatineDuo"
 
 Name "${APPNAME}"
@@ -16,7 +16,7 @@ InstallDirRegKey HKCU "Software\PlatineDuo" "InstallDir"
 RequestExecutionLevel user
 BrandingText "${APPNAME} ${VERSION}"
 
-VIProductVersion "2.1.0.0"
+VIProductVersion "2.2.0.0"
 VIAddVersionKey /LANG=1036 "ProductName" "${APPNAME}"
 VIAddVersionKey /LANG=1036 "FileDescription" "Installation de ${APPNAME}"
 VIAddVersionKey /LANG=1036 "FileVersion" "${VERSION}"

@@ -1,7 +1,7 @@
 {
   "name": "platine-duo",
   "productName": "Platine DUO",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Logiciel de mix DJ : deux ou quatre platines, timeline, Auto DJ, sampleur, contrôleurs MIDI et HID",
   "author": {
     "name": "Jacques Branas",

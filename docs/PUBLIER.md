@@ -1,6 +1,6 @@
 # Publier une nouvelle version sur GitHub
 
-Exemple : Platine DUO 2.1.0, sur le dépôt https://github.com/Deltapassion/Platine-Duo
+Exemple : Platine DUO 2.2.0, sur le dépôt https://github.com/Deltapassion/Platine-Duo
 
 ## 1. Mettre à jour le code
 
@@ -9,7 +9,7 @@ Exemple : Platine DUO 2.1.0, sur le dépôt https://github.com/Deltapassion/Plat
 3. Sélectionnez **tout le contenu** du dossier décompressé (pas le dossier lui-même) et glissez-le dans la page.
    Les fichiers de même nom sont remplacés, les nouveaux sont ajoutés.
    Sous Windows, cochez Affichage › « Éléments masqués » pour voir le fichier caché `.gitignore`.
-4. En bas : message `Platine DUO 2.1.0` › **Commit changes**.
+4. En bas : message `Platine DUO 2.2.0` › **Commit changes**.
 
 Le code ne contient aucun fichier de plus de 25 Mo : les gros fichiers vont dans la Release.
 
@@ -17,20 +17,21 @@ Le code ne contient aucun fichier de plus de 25 Mo : les gros fichiers vont dans
 
 1. Colonne de droite : **Releases** › **Draft a new release**
    (ou l'adresse `…/releases/new` du dépôt).
-2. **Choose a tag** : tapez `Version_2_1_0` (exactement, c'est le nom utilisé par les liens du site) › **Create new tag**.
-3. Titre : `Platine DUO 2.1.0`.
+2. **Choose a tag** : tapez `Version_2_2_0` (exactement, c'est le nom utilisé par les liens du site) › **Create new tag**.
+3. Titre : `Platine DUO 2.2.0`.
 4. Description, par exemple :
-   `Nouveau : mode timeline façon MixMeister (blocs sur des pistes, courbes de volume, construction depuis l'Auto DJ, export WAV et MP3). Le logiciel s'appelle désormais Platine DUO. Windows : .exe · Mac : .zip (arm64 = Apple Silicon, x64 = Intel) · Ubuntu/Debian : .deb · toutes distributions Linux : AppImage · navigateur : .html. Les réglages des versions précédentes sont conservés.`
+   `Nouveau : pré-écoute au casque pendant le mix en mode timeline, contrôleur actif en mode timeline, liste des morceaux en haut ou en bas, titres déjà joués à part. Windows : .exe · Mac : .zip (arm64 = Apple Silicon, x64 = Intel) · Ubuntu/Debian : .deb · toutes distributions Linux : AppImage · navigateur : .html. Les réglages des versions précédentes sont conservés.`
 5. Glissez dans la zone « Attach binaries » :
-   - `Platine-DUO-Setup-2.1.0.exe`
-   - `platine-duo_2.1.0_amd64.deb`
-   - `Platine-DUO-2.1.0-x86_64.AppImage`
-   - `Platine-DUO-2.1.0-mac-arm64.zip`
-   - `Platine-DUO-2.1.0-mac-x64.zip`
+   - `Platine-DUO-Setup-2.2.0.exe`
+   - `platine-duo_2.2.0_amd64.deb`
+   - `Platine-DUO-2.2.0-x86_64.AppImage`
+   - `Platine-DUO-2.2.0-mac-arm64.zip`
+   - `Platine-DUO-2.2.0-mac-x64.zip`
    - `platine-duo.html`
+   Attention : si votre navigateur a renommé un fichier en « (1) », « (2) »… (téléchargé deux fois), renommez-le avant de l'envoyer, sinon le lien du site donne une erreur 404.
 6. Attendez la fin de chaque chargement, cochez **Set as the latest release**, puis **Publish release**.
 
-Les Releases 2.0.0 et 1.1.0 restent disponibles en dessous. Le compteur du site additionne les téléchargements
+Les Releases précédentes (2.1.0, 2.0.0, 1.1.0) restent disponibles en dessous. Le compteur du site additionne les téléchargements
 de toutes les versions 2.x (le mapping GMX est compté à part).
 
 ## 3. Faire connaître
@@ -49,7 +50,7 @@ Le site est dans le dossier `docs/` : `index.html` (la page), `assets/` (photo d
 3. *Source* : **Deploy from a branch** ; *Branch* : **main**, dossier **/docs** ; **Save**.
 4. Après une à deux minutes, le site est en ligne à l'adresse : https://deltapassion.github.io/Platine-Duo/
 
-Les boutons de téléchargement pointent vers la Release `Version_2_1_0`. Les fichiers de cette Release doivent
-porter exactement ces noms : `Platine-DUO-Setup-2.1.0.exe`, `Platine-DUO-2.1.0-mac-arm64.zip`,
-`Platine-DUO-2.1.0-mac-x64.zip`, `platine-duo_2.1.0_amd64.deb`, `Platine-DUO-2.1.0-x86_64.AppImage`,
+Les boutons de téléchargement pointent vers la Release `Version_2_2_0`. Les fichiers de cette Release doivent
+porter exactement ces noms : `Platine-DUO-Setup-2.2.0.exe`, `Platine-DUO-2.2.0-mac-arm64.zip`,
+`Platine-DUO-2.2.0-mac-x64.zip`, `platine-duo_2.2.0_amd64.deb`, `Platine-DUO-2.2.0-x86_64.AppImage`,
 `platine-duo.html`. Pour changer un nom, modifiez le lien correspondant dans `docs/index.html`.
