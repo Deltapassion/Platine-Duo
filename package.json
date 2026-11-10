@@ -1,7 +1,7 @@
 {
   "name": "platine-duo",
   "productName": "Platine DUO",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Logiciel de mix DJ : deux ou quatre platines, timeline, Auto DJ, sampleur, contrôleurs MIDI et HID",
   "author": {
     "name": "Jacques Branas",
@@ -91,7 +91,7 @@
       "category": "Audio",
       "executableName": "platine-duo",
       "synopsis": "Logiciel de mix DJ à deux ou quatre platines",
-      "description": "Deux ou quatre platines, timeline avec export WAV et MP3, table de mixage, effets, Auto DJ, sampleur et contrôleurs MIDI et USB HID (Gemini GMX, Reloop Beatpad, Hercules Inpulse, Pioneer DDJ...).",
+      "description": "Deux ou quatre platines, timeline avec export WAV, AIFF, FLAC et MP3, table de mixage, effets, Auto DJ, sampleur et contrôleurs MIDI et USB HID (Gemini GMX, Reloop Beatpad, Hercules Inpulse, Pioneer DDJ...).",
       "maintainer": "Jacques Branas <deltapassion@gmx.com>",
       "desktop": {
         "entry": {

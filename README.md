@@ -26,7 +26,7 @@ Free software licensed under the **GNU GPL version 2 or later**. Contact: deltap
 ## Ce que fait Platine DUO
 
 - **2 ou 4 platines** au choix (bouton « 2 VOIES / 4 VOIES » en haut de l'écran), avec formes d'onde, BPM, SYNC, 8 repères, boucles, effets (écho, flanger, réverb), jog et pitch.
-- **Mode timeline** (bouton « PLATINES / TIMELINE »), à la façon de MixMeister : les titres deviennent des blocs posés sur des pistes, calés sur le tempo du mix, avec une **courbe de volume** à points pour régler la montée et la coupure du son. « Construire depuis l'Auto DJ » enchaîne la file automatiquement ; le mix s'**exporte en WAV ou en MP3**. **Pré-écoute au casque pendant le mix** : la prochaine transition s'écoute dans le casque pendant que le public entend la sortie générale (fonction payante dans MixMeister, gratuite ici).
+- **Mode timeline** (bouton « PLATINES / TIMELINE »), à la façon de MixMeister : les titres deviennent des blocs posés sur des pistes, calés sur le tempo du mix, avec une **courbe de volume** à points pour régler la montée et la coupure du son. « Construire depuis l'Auto DJ » enchaîne la file automatiquement ; le mix s'**exporte en WAV, AIFF, FLAC ou MP3**. **Pré-écoute au casque pendant le mix** : la prochaine transition s'écoute dans le casque pendant que le public entend la sortie générale (fonction payante dans MixMeister, gratuite ici).
 - **Liste des morceaux** en haut ou en bas de l'écran (bouton « ⇅ Liste »), et **titres déjà joués à part** (bouton « Joués à part » : à gauche ceux à jouer, à droite ceux déjà joués, avec l'heure).
 - **Table de mixage** jusqu'à 4 voies : gain, égaliseur 3 bandes, filtre, pré-écoute au casque, crossfader avec affectation de chaque voie (côté A, côté B ou hors crossfader), **XF START**.
 - **Auto DJ** : le robot enchaîne les titres d'une platine à l'autre en respectant vos faders.
@@ -46,11 +46,11 @@ Les fichiers sont dans la rubrique **Releases** (à droite sur cette page).
 
 | Système | Fichier | Installation |
 | --- | --- | --- |
-| Windows 10 / 11 | `Platine-DUO-Setup-2.2.0.exe` | Double-clic. L'installateur propose de retirer l'ancienne version (Platine Duo, Platine Duo 4V) ; vos réglages sont gardés. Si Windows affiche « Windows a protégé votre ordinateur », cliquez **Informations complémentaires › Exécuter quand même** (l'installateur n'est pas signé par un certificat payant). |
-| Mac Apple Silicon (M1, M2, M3, M4…) | `Platine-DUO-2.2.0-mac-arm64.zip` | macOS 12 Monterey ou plus récent. Double-clic sur le .zip, puis glissez **Platine DUO** dans le dossier Applications. Premier lancement : voir « Ouvrir sur Mac » plus bas. |
-| Mac Intel | `Platine-DUO-2.2.0-mac-x64.zip` | Pareil. Pour savoir quel Mac vous avez : menu Pomme › À propos de ce Mac (« Puce Apple » ou « Processeur Intel »). |
-| Ubuntu, Debian, Mint | `platine-duo_2.2.0_amd64.deb` | `sudo apt install ./platine-duo_2.2.0_amd64.deb` (remplace les versions précédentes) |
-| Toute distribution Linux (PC 64 bits) | `Platine-DUO-2.2.0-x86_64.AppImage` | `chmod +x Platine-DUO-2.2.0-x86_64.AppImage` puis double-clic. Si rien ne s'ouvre sur Ubuntu 22.04 ou plus récent : `sudo apt install libfuse2` (24.04 : `libfuse2t64`). Pour un contrôleur en USB HID (écrans du GMX), installez une fois les règles d'accès : voir plus bas. |
+| Windows 10 / 11 | `Platine-DUO-Setup-2.3.0.exe` | Double-clic. L'installateur propose de retirer l'ancienne version (Platine Duo, Platine Duo 4V) ; vos réglages sont gardés. Si Windows affiche « Windows a protégé votre ordinateur », cliquez **Informations complémentaires › Exécuter quand même** (l'installateur n'est pas signé par un certificat payant). |
+| Mac Apple Silicon (M1, M2, M3, M4…) | `Platine-DUO-2.3.0-mac-arm64.zip` | macOS 12 Monterey ou plus récent. Double-clic sur le .zip, puis glissez **Platine DUO** dans le dossier Applications. Premier lancement : voir « Ouvrir sur Mac » plus bas. |
+| Mac Intel | `Platine-DUO-2.3.0-mac-x64.zip` | Pareil. Pour savoir quel Mac vous avez : menu Pomme › À propos de ce Mac (« Puce Apple » ou « Processeur Intel »). |
+| Ubuntu, Debian, Mint | `platine-duo_2.3.0_amd64.deb` | `sudo apt install ./platine-duo_2.3.0_amd64.deb` (remplace les versions précédentes) |
+| Toute distribution Linux (PC 64 bits) | `Platine-DUO-2.3.0-x86_64.AppImage` | `chmod +x Platine-DUO-2.3.0-x86_64.AppImage` puis double-clic. Si rien ne s'ouvre sur Ubuntu 22.04 ou plus récent : `sudo apt install libfuse2` (24.04 : `libfuse2t64`). Pour un contrôleur en USB HID (écrans du GMX), installez une fois les règles d'accès : voir plus bas. |
 | Android (tablettes et téléphones) | en ligne : https://deltapassion.github.io/Platine-Duo/app/ | Ouvrir dans Chrome, puis menu ⋮ › « Installer l'application ». Contrôleurs MIDI en USB (câble OTG). Bientôt sur Google Play. |
 | iPhone et iPad | en ligne : https://deltapassion.github.io/Platine-Duo/app/ | Ouvrir dans Safari, bouton Partager › « Sur l'écran d'accueil ». Au doigt : Apple ne permet pas encore les contrôleurs MIDI dans les navigateurs. |
 | Navigateur | `platine-duo.html` | Ouvrir dans Chrome, Edge ou Opera sur ordinateur. |
@@ -88,7 +88,7 @@ Il faut Node.js 20 ou plus récent.
 ```bash
 npm install                # Electron et les outils de construction
 npm start                  # lancer sans installer
-npm run dist:linux         # paquet .deb      → dist/platine-duo_2.2.0_amd64.deb
+npm run dist:linux         # paquet .deb      → dist/platine-duo_2.3.0_amd64.deb
 npm run dist:appimage      # AppImage         → dist/
 npm run dist:win           # installateur Windows (NSIS requis : sudo apt install nsis)
 npm run dist:mac           # Mac arm64 et x64 → dist/*.zip (sur Linux : rcodesign requis)
@@ -102,7 +102,15 @@ npm run dist:mac           # Mac arm64 et x64 → dist/*.zip (sur Linux : rcodes
 | `build/` | icônes, règles USB pour Linux, scripts du paquet .deb |
 | `mappings/` | mappings d'origine (Gemini GMX v2.1, projet Mixxx) |
 
-## Nouveautés de la version 2.2.0
+## Nouveautés de la version 2.3.0
+
+- **Plus aucune coupure** sur le morceau qui joue quand on modifie la timeline : seuls les blocs modifiés sont reprogrammés, même quand les fondus du morceau en cours changent.
+- **Écoute au casque de n'importe quel titre de la liste** (bouton casque ou touche `L`), sans toucher au mix, en mode 2 ou 4 platines comme en mode timeline, avec une barre pour avancer dans le morceau.
+- **Enchaîné** (bouton ⇉) : un nouveau titre se place juste derrière le précédent, même glissé entre deux blocs ; en déplaçant un bloc pour régler sa transition, les blocs suivants le suivent en gardant leurs transitions.
+- **Lecture des fichiers AIFF** (16, 24 et 32 bits, AIFF-C). Formats lus : MP3, WAV, AIFF, FLAC, OGG, Opus, M4A/AAC.
+- **Export du mix au choix** dans une liste déroulante : WAV, AIFF, FLAC (sans perte, environ deux fois plus léger) ou MP3 (320, 256, 192 ou 128 kbit/s).
+
+## Version 2.2.0
 
 - **Pré-écoute au casque en mode timeline**, même pendant la lecture : bouton « Pré-écoute », touche `H`, bouton casque (PFL) du contrôleur, ou `Maj` + clic sur la règle. La zone écoutée s'affiche en vert.
 - **Le contrôleur pilote la timeline** : lecture / pause, CUE, jog pour se déplacer, saut de mesures, chargement du titre choisi.
@@ -152,7 +160,7 @@ Windows · Mac · Linux · Android · iPhone · Browser (Chrome, Edge, Opera, or
 ![Timeline mode](docs/captures/timeline-en.png)
 
 - Two or four decks ("2 DECKS / 4 DECKS" switch at the top of the screen) with waveforms, BPM, sync, 8 hot cues, loops, effects, jog and pitch.
-- **Timeline mode** ("DECKS / TIMELINE" switch), MixMeister style: tracks become blocks on lanes, locked to the mix tempo, with point-based **volume curves** for fade-ins and cuts. "Build from Auto DJ" chains the queue automatically, and the mix can be **exported to WAV or MP3**. **Headphone pre-listen during the mix**: hear the next transition in the headphones while the audience hears the main output.
+- **Timeline mode** ("DECKS / TIMELINE" switch), MixMeister style: tracks become blocks on lanes, locked to the mix tempo, with point-based **volume curves** for fade-ins and cuts. "Build from Auto DJ" chains the queue automatically, and the mix can be **exported to WAV, AIFF, FLAC or MP3**. **Headphone pre-listen during the mix**: hear the next transition in the headphones while the audience hears the main output.
 - Track list at the top or the bottom of the screen ("⇅ List"), and **already played tracks in a separate list** ("Played apart").
 - Mixer with up to 4 channels: 3-band EQ, filter, headphone cue, crossfader with per-channel assignment, and **XF START** (crossfader starts the deck).
 - **Auto DJ** robot that alternates decks and respects your channel faders, with a **party-by-style** mode: sets of N tracks per dance style taken from your folders (salsa, bachata, kizomba, semba, tango…).
