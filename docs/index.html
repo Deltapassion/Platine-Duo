@@ -278,8 +278,8 @@ footer a{color:#cfd5e1}
   <div class="wrap">
     <h2 data-i="vh">Platine DUO en vidéo</h2>
     <p class="lead" style="text-align:center" data-i="vl">Trois minutes pour faire le tour : platines, pré-écoutes, Auto DJ, timeline et export.</p>
-    <div class="yt"><iframe id="ytFrame" src="https://www.youtube-nocookie.com/embed/fyNd3IGrUDA?rel=0" title="Platine DUO – présentation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    <p class="yl"><a id="ytLink" href="https://youtu.be/fyNd3IGrUDA" target="_blank" rel="noopener" data-i="vy">Voir sur YouTube</a></p>
+    <div class="yt"><iframe id="ytFrame" src="https://www.youtube-nocookie.com/embed/NulOcvt2Mao?rel=0" title="Platine DUO 3.0 – présentation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <p class="yl"><a id="ytLink" href="https://youtu.be/NulOcvt2Mao" target="_blank" rel="noopener" data-i="vy">Voir sur YouTube</a></p>
   </div>
 </section>
 
@@ -489,7 +489,7 @@ footer a{color:#cfd5e1}
     document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.l === l); });
     document.getElementById('shotImg').src = l === 'fr' ? 'assets/ecran-4v.jpg' : 'assets/ecran-4v-en.jpg';
     // vidéo de présentation : la version de la langue si elle est en ligne, sinon la française (sous-titres dans la langue du visiteur)
-    var YT = { fr: 'fyNd3IGrUDA' }, yid = YT[l] || YT.fr, yf = document.getElementById('ytFrame'), ys = 'https://www.youtube-nocookie.com/embed/' + yid + '?rel=0&hl=' + l + (YT[l] ? '' : '&cc_load_policy=1&cc_lang_pref=' + l);
+    var YT = { fr: 'NulOcvt2Mao', en: 'uiIkxAIuKmc' }, yid = YT[l] || YT.fr, yf = document.getElementById('ytFrame'), ys = 'https://www.youtube-nocookie.com/embed/' + yid + '?rel=0&hl=' + l + (YT[l] ? '' : '&cc_load_policy=1&cc_lang_pref=' + l);
     if (yf && yf.getAttribute('src') !== ys) yf.setAttribute('src', ys);
     var yl = document.getElementById('ytLink'); if (yl) yl.href = 'https://youtu.be/' + yid;
     document.getElementById('tlImg').src = l === 'fr' ? 'assets/ecran-timeline.jpg' : 'assets/ecran-timeline-en.jpg';
