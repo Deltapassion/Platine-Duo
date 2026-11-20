@@ -1,6 +1,6 @@
 // Platine Duo 4V : fonctionnement hors ligne de l'application installée
 // Le logiciel est rechargé depuis Internet quand c'est possible, sinon la copie enregistrée est utilisée.
-const CACHE = 'platine-duo-v2.3.0';
+const CACHE = 'platine-duo-v3.0.0c';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {

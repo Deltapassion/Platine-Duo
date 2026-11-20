@@ -16,7 +16,8 @@ const PAGE_URL = pathToFileURL(PAGE).href;
 let win = null, btCallback = null;
 
 // la page du logiciel est la seule autorisée à utiliser le MIDI, l'USB et le Bluetooth
-const isOurPage = url => typeof url === 'string' && url.split('#')[0] === PAGE_URL;
+// (la timeline TIMELINE DJ MIX est un cadre « about:srcdoc » de la même page)
+const isOurPage = url => typeof url === 'string' && (url.split('#')[0] === PAGE_URL || url === 'about:srcdoc');
 
 // adresses que l'application peut lire pour la page (services sans accès direct depuis une page locale)
 const NET_ALLOWED = [/^api\.deezer\.com$/, /\.dzcdn\.net$/];
@@ -116,6 +117,44 @@ ipcMain.handle('dir-read', async (e, id, rel, start, end) => {
 ipcMain.handle('dir-forget', async (e, id) => {
   if (!fromPage(e)) throw new Error('refusé');
   roots = getRoots().filter(r => r.id !== String(id)); saveRoots(); return true;
+});
+// ---- nouvelle version : téléchargement depuis la Release GitHub du projet, puis installation ----
+ipcMain.handle('app-info', e => {
+  if (!fromPage(e)) throw new Error('refusé');
+  return { platform: process.platform, arch: process.arch, appImage: !!process.env.APPIMAGE, version: app.getVersion() };
+});
+ipcMain.handle('update-get', async (e, u, name) => {
+  if (!fromPage(e)) throw new Error('refusé');
+  const url = new URL(String(u));
+  if (url.protocol !== 'https:' || url.hostname !== 'github.com' || !/^\/Deltapassion\/Platine-Duo\/releases\/download\//i.test(url.pathname)) throw new Error('adresse non autorisée');
+  const safe = path.basename(String(name)).replace(/[^\w.\- ()]/g, '_');
+  if (!/\.(exe|deb|AppImage|zip)$/i.test(safe)) throw new Error('type de fichier non autorisé');
+  const r = await net.fetch(url.href); if (!r.ok) throw new Error('HTTP ' + r.status);
+  const total = +r.headers.get('content-length') || 0, file = path.join(app.getPath('downloads'), safe), tmp = file + '.part';
+  const out = fs.createWriteStream(tmp); let got = 0, last = 0;
+  const reader = r.body.getReader();
+  for (;;) {
+    const { done, value } = await reader.read(); if (done) break;
+    got += value.length; if (!out.write(Buffer.from(value))) await new Promise(res => out.once('drain', res));
+    if (total && Date.now() - last > 250) { last = Date.now(); if (!e.sender.isDestroyed()) e.sender.send('update-progress', got / total); }
+  }
+  await new Promise((res, rej) => out.end(err => err ? rej(err) : res()));
+  if (total && got !== total) { try { fs.unlinkSync(tmp); } catch (er) {} throw new Error('téléchargement incomplet'); }
+  if (process.platform === 'linux' && /\.AppImage$/i.test(safe) && process.env.APPIMAGE) {
+    // AppImage : le nouveau fichier remplace l'ancien, puis le logiciel redémarre
+    const cur = process.env.APPIMAGE;
+    fs.chmodSync(tmp, 0o755); fs.renameSync(tmp, cur);
+    setTimeout(() => { app.relaunch({ execPath: cur, args: [] }); app.exit(0); }, 1500);
+    return 'restart';
+  }
+  fs.renameSync(tmp, file);
+  if (process.platform === 'win32' && /\.exe$/i.test(safe)) {
+    // Windows : l'installateur s'ouvre et Platine DUO se ferme pour libérer ses fichiers
+    setTimeout(() => { shell.openPath(file).then(() => setTimeout(() => app.quit(), 800)); }, 1200);
+    return 'run';
+  }
+  if (process.platform === 'darwin') { shell.openPath(file); shell.showItemInFolder(file); return 'mac'; }
+  shell.openPath(file); shell.showItemInFolder(file); return 'open';
 });
 ipcMain.handle('net-bytes', async (e, u) => {
   if (!fromPage(e)) throw new Error('refusé');

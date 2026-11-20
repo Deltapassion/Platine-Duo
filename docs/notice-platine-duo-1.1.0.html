@@ -1104,7 +1104,7 @@ th{background:var(--panel)}
 </main>
 <script>
 (function(){
-  var UI = {"fr": ["Langue", "Autre version de la notice", "Télécharger le logiciel (Windows)", "Notice", "Imprimer"], "en": ["Language", "Other version of the manual", "Download the software (Windows)", "Manual", "Print"], "es": ["Idioma", "Otra versión del manual", "Descargar el programa (Windows)", "Manual", "Imprimir"], "de": ["Sprache", "Andere Version der Anleitung", "Software herunterladen (Windows)", "Anleitung", "Drucken"], "it": ["Lingua", "Altra versione del manuale", "Scarica il programma (Windows)", "Manuale", "Stampa"], "pt": ["Idioma", "Outra versão do manual", "Baixar o programa (Windows)", "Manual", "Imprimir"]}, LS = ['fr','en','es','de','it','pt'];
+  var UI = {"fr": ["Langue", "Autre version de la notice", "Télécharger le logiciel (Windows)", "Notice", "Imprimer"], "en": ["Language", "Other version of the manual", "Download the software (Windows)", "Manual", "Print"], "es": ["Idioma", "Otra versión del manual", "Descargar el programa (Windows)", "Manual", "Imprimir"], "de": ["Sprache", "Andere Version der Anleitung", "Software herunterladen (Windows)", "Anleitung", "Drucken"], "it": ["Lingua", "Altra versione del manuale", "Scarica il programma (Windows)", "Manuale", "Stampa"], "pt": ["Idioma", "Outra versão do manual", "Baixar o programa (Windows)", "Manual", "Imprimir"], "el": ["Γλώσσα", "Άλλη έκδοση του οδηγού", "Λήψη του λογισμικού (Windows)", "Οδηγός", "Εκτύπωση"], "ru": ["Язык", "Другая версия руководства", "Скачать программу (Windows)", "Руководство", "Печать"], "zh": ["语言", "其他版本的说明", "下载软件（Windows）", "使用说明", "打印"], "ja": ["言語", "別のバージョンのマニュアル", "ソフトをダウンロード（Windows）", "マニュアル", "印刷"]}, LS = ["fr", "en", "es", "de", "it", "pt"];
   function pick(){
     var q = (location.hash.match(/lang=([a-z]{2})/) || location.search.match(/lang=([a-z]{2})/) || [])[1];
     if (q && LS.indexOf(q) >= 0) return q;
@@ -1117,7 +1117,7 @@ th{background:var(--panel)}
     document.querySelectorAll('article').forEach(function(a){ a.hidden = a.dataset.lang !== l; });
     document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.l === l ? 'true' : 'false'); });
     var t = UI[l];
-    var o = document.getElementById('lnkOther'); o.textContent = t[1] + ' : Platine DUO 2.3.0'; o.href = 'notice-platine-duo.html#lang=' + l;
+    var o = document.getElementById('lnkOther'); o.textContent = t[1] + ' : Platine DUO 3.0.0'; o.href = 'notice-platine-duo.html#lang=' + l;
     document.getElementById('lnkDl').textContent = t[2];
     document.getElementById('btnPrint').textContent = t[4];
     document.title = t[3] + ' Platine Duo 1.1.0';

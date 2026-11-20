@@ -1,7 +1,7 @@
 // pont minimal et contrôlé entre la page et l'application (bac à sable activé)
 const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('pdNative', {
-  version: '2.3.0',
+  version: '3.0.0',
   onBtDevices: cb => { ipcRenderer.removeAllListeners('bt-devices'); ipcRenderer.on('bt-devices', (e, list) => cb(list)); },
   btSelect: id => ipcRenderer.send('bt-select', String(id || '')),
   fetchJson: url => ipcRenderer.invoke('net-json', String(url)),
@@ -10,5 +10,9 @@ contextBridge.exposeInMainWorld('pdNative', {
   dirPick: () => ipcRenderer.invoke('dir-pick'),
   dirList: id => ipcRenderer.invoke('dir-list', String(id)),
   dirRead: async (id, rel, start, end) => { const u = await ipcRenderer.invoke('dir-read', String(id), String(rel), +start || 0, end == null ? null : +end); return u.buffer.slice(u.byteOffset, u.byteOffset + u.byteLength); },
-  dirForget: id => ipcRenderer.invoke('dir-forget', String(id))
+  dirForget: id => ipcRenderer.invoke('dir-forget', String(id)),
+  // nouvelle version
+  appInfo: () => ipcRenderer.invoke('app-info'),
+  updateGet: (url, name) => ipcRenderer.invoke('update-get', String(url), String(name)),
+  onUpdateProgress: cb => { ipcRenderer.removeAllListeners('update-progress'); ipcRenderer.on('update-progress', (e, p) => cb(+p || 0)); }
 });
